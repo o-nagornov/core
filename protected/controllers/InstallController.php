@@ -13,16 +13,18 @@ class InstallController extends Controller
 		
 		if ($account->status != 'new')
 		{
-			$this->redirect(array('/install/filesCreation', 'account'=>$account));
+			$this->redirect(array('/install/filesCreation', 'account'=>$account->id_account));
 		}
 		
 		$prefix = "a".$account->id_account."_".$account->login."_";
-		$account->tbl_prefix = $prefix;
 		
 		$transaction=Yii::app()->db_library->beginTransaction();
 		try
 		{
 		   Yii::app()->db_library->createCommand($this->getSQLQuery($prefix))->execute();
+		   $account->tbl_prefix = $prefix;
+		   $account->status = 'db';
+		   $account->save();
 		   $transaction->commit();
 		}
 		catch(Exception $e)
@@ -44,10 +46,38 @@ class InstallController extends Controller
 			Yii::app()->user->setFlash('error', 'Увы, но сначала Вам нужно зарегистрировать аккаунт');
 		}
 		
+		if ($account->status != 'db')
+		{
+			$this->redirect(array('/install'));
+		}
+		
+		$src = Yii::getPathOfAlias('application.dist.library');
+		$dst = Yii::getPathOfAlias('webroot.libraries')."/".$account->login;
+		
+		
+		echo $src."<br>";
+		echo $dst."<br>";
+		
+		try
+		{
+			$this->recursiveCopy($src, $dst);
+			symlink($dst, Yii::getPathOfAlias('webroot')."/".$account->login);
+			$account->status = "files";
+			$account->save();
+			
+			echo "ok";
+			
+		}
+		catch (Exception $e)
+		{
+			echo "fail".$e->getMessage();
+		}
+		
 		$this->render('filesCreation');
+		
 	}
 
-	public function actionUsersCreation($account)
+	public function actionSettingsCreation($account)
 	{
 		$account = Account::model()->findByPk($account);
 		
@@ -56,7 +86,41 @@ class InstallController extends Controller
 			Yii::app()->user->setFlash('error', 'Увы, но сначала Вам нужно зарегистрировать аккаунт');
 		}
 		
-		$this->render('usersCreation');
+		if ($account->status != 'files')
+		{
+			$this->redirect(array('/install'));
+		}
+		
+		$src = Yii::getPathOfAlias('application.dist.library.protected.config')."/main.php";
+		$dst = Yii::getPathOfAlias('webroot.libraries')."/".$account->login."/protected/config/main.php";
+		
+		
+		
+		echo $src."<br>";
+		echo $dst."<br>";
+		
+		try
+		{
+			$config = file_get_contents($src);
+			$config = str_replace("%tablePrefix%", $account->tbl_prefix, $config);
+			$config = str_replace("%accountId%", $account->id_account, $config);
+			$config = str_replace("%accountLogin%", $account->login, $config);
+			
+			$result = file_put_contents ($dst, $config);
+			
+			$account->status = "settings";
+			$account->save();
+			
+			echo "ok";
+			
+		}
+		catch (Exception $e)
+		{
+			echo "fail".$e->getMessage();
+		}
+
+		
+		$this->render('settingsCreation');
 	}
 	
 	public function actionIndex()
@@ -260,5 +324,27 @@ class InstallController extends Controller
 			ON UPDATE NO ACTION)
 		ENGINE = InnoDB;
 		";
+	}
+	
+	function recursiveCopy($source, $target) {
+		if (is_dir($source))  {
+			mkdir($target);
+		    $d = dir($source);
+			while (FALSE !== ($entry = $d->read())) {
+				if ($entry == '.' || $entry == '..') continue;
+			      $Entry = $source . '/' . $entry;
+					if (is_dir($Entry))
+					{
+						$this->recursiveCopy($Entry, $target . '/' . $entry);
+					} else {
+						copy($Entry, $target . '/' . $entry);
+					}
+			}
+		    $d->close();
+		}
+		else
+		{
+			copy($source, $target);
+		}
 	}
 }

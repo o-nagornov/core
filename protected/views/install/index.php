@@ -14,5 +14,8 @@ $this->breadcrumbs=array(
 
 <?php
 	echo CHtml::link('DB creation', array('/install/databaseCreation', 'account'=>'1'));
-
+	echo "<br />";
+	echo CHtml::link('File creation', array('/install/filesCreation', 'account'=>'1'));
+	echo "<br />";
+	echo CHtml::link('Settings creation', array('/install/settingsCreation', 'account'=>'1'));
 ?>
