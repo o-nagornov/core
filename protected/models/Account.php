@@ -9,12 +9,11 @@
  * @property string $email
  * @property string $password
  * @property string $creation_date
- * @property string $stop_date
  * @property string $tbl_prefix
- * @property integer $locked
  * @property string $status
  * @property string $role
  * @property string $check_hash
+ * @property string $account
  * @property integer $tariff_id
  *
  * The followings are the available model relations:
@@ -39,13 +38,14 @@ class Account extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('login, email, tariff_id', 'required'),
-			array('locked, tariff_id', 'numerical', 'integerOnly'=>true),
-			array('login, email, password, stop_date, tbl_prefix, status, role, check_hash', 'length', 'max'=>45),
+			array('login, email, password, tariff_id', 'required'),
+			array('tariff_id', 'numerical', 'integerOnly'=>true),
+			array('login, email, password, tbl_prefix, status, role, check_hash', 'length', 'max'=>45),
+			array('account', 'length', 'max'=>10),
 			array('creation_date', 'safe'),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('id_account, login, email, password, creation_date, stop_date, tbl_prefix, locked, status, role, check_hash, tariff_id', 'safe', 'on'=>'search'),
+			array('id_account, login, email, password, creation_date, tbl_prefix, status, role, check_hash, account, tariff_id', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -73,12 +73,11 @@ class Account extends CActiveRecord
 			'email' => 'Email',
 			'password' => 'Password',
 			'creation_date' => 'Creation Date',
-			'stop_date' => 'Stop Date',
 			'tbl_prefix' => 'Tbl Prefix',
-			'locked' => 'Locked',
 			'status' => 'Status',
 			'role' => 'Role',
 			'check_hash' => 'Check Hash',
+			'account' => 'Account',
 			'tariff_id' => 'Tariff',
 		);
 	}
@@ -106,12 +105,11 @@ class Account extends CActiveRecord
 		$criteria->compare('email',$this->email,true);
 		$criteria->compare('password',$this->password,true);
 		$criteria->compare('creation_date',$this->creation_date,true);
-		$criteria->compare('stop_date',$this->stop_date,true);
 		$criteria->compare('tbl_prefix',$this->tbl_prefix,true);
-		$criteria->compare('locked',$this->locked);
 		$criteria->compare('status',$this->status,true);
 		$criteria->compare('role',$this->role,true);
 		$criteria->compare('check_hash',$this->check_hash,true);
+		$criteria->compare('account',$this->account,true);
 		$criteria->compare('tariff_id',$this->tariff_id);
 
 		return new CActiveDataProvider($this, array(

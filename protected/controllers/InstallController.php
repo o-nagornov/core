@@ -69,8 +69,8 @@ class InstallController extends Controller
 				$continue = false;
 			}
 			break;
-		case 'ready':
-			$dbStatus = 'Выполнено';
+		case 'demo':
+			$dbeStatus = 'Выполнено';
 			$filesStatus = 'Выполнено';
 			$settingsStatus = 'Выполнено';
 			$usersStatus = 'Выполнено';
@@ -163,7 +163,7 @@ class InstallController extends Controller
 		try
 		{
 		   Yii::app()->db_library->createCommand($this->getCreateUserSQL($account))->execute();
-		   $account->status = 'ready';
+		   $account->status = 'demo';
 		   $account->save();
 		   $transaction->commit();
 		   

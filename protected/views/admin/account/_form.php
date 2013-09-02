@@ -44,21 +44,9 @@
 	</div>
 
 	<div class="row">
-		<?php echo $form->labelEx($model,'stop_date'); ?>
-		<?php echo $form->textField($model,'stop_date',array('size'=>45,'maxlength'=>45)); ?>
-		<?php echo $form->error($model,'stop_date'); ?>
-	</div>
-
-	<div class="row">
 		<?php echo $form->labelEx($model,'tbl_prefix'); ?>
 		<?php echo $form->textField($model,'tbl_prefix',array('size'=>45,'maxlength'=>45)); ?>
 		<?php echo $form->error($model,'tbl_prefix'); ?>
-	</div>
-
-	<div class="row">
-		<?php echo $form->labelEx($model,'locked'); ?>
-		<?php echo $form->textField($model,'locked'); ?>
-		<?php echo $form->error($model,'locked'); ?>
 	</div>
 
 	<div class="row">
@@ -77,6 +65,12 @@
 		<?php echo $form->labelEx($model,'check_hash'); ?>
 		<?php echo $form->textField($model,'check_hash',array('size'=>45,'maxlength'=>45)); ?>
 		<?php echo $form->error($model,'check_hash'); ?>
+	</div>
+
+	<div class="row">
+		<?php echo $form->labelEx($model,'account'); ?>
+		<?php echo $form->textField($model,'account',array('size'=>10,'maxlength'=>10)); ?>
+		<?php echo $form->error($model,'account'); ?>
 	</div>
 
 	<div class="row">

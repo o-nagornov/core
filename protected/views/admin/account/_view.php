@@ -25,29 +25,25 @@
 	<?php echo CHtml::encode($data->creation_date); ?>
 	<br />
 
-	<b><?php echo CHtml::encode($data->getAttributeLabel('stop_date')); ?>:</b>
-	<?php echo CHtml::encode($data->stop_date); ?>
-	<br />
-
 	<b><?php echo CHtml::encode($data->getAttributeLabel('tbl_prefix')); ?>:</b>
 	<?php echo CHtml::encode($data->tbl_prefix); ?>
-	<br />
-
-	<?php /*
-	<b><?php echo CHtml::encode($data->getAttributeLabel('locked')); ?>:</b>
-	<?php echo CHtml::encode($data->locked); ?>
 	<br />
 
 	<b><?php echo CHtml::encode($data->getAttributeLabel('status')); ?>:</b>
 	<?php echo CHtml::encode($data->status); ?>
 	<br />
 
+	<?php /*
 	<b><?php echo CHtml::encode($data->getAttributeLabel('role')); ?>:</b>
 	<?php echo CHtml::encode($data->role); ?>
 	<br />
 
 	<b><?php echo CHtml::encode($data->getAttributeLabel('check_hash')); ?>:</b>
 	<?php echo CHtml::encode($data->check_hash); ?>
+	<br />
+
+	<b><?php echo CHtml::encode($data->getAttributeLabel('account')); ?>:</b>
+	<?php echo CHtml::encode($data->account); ?>
 	<br />
 
 	<b><?php echo CHtml::encode($data->getAttributeLabel('tariff_id')); ?>:</b>

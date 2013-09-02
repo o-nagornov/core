@@ -32,18 +32,8 @@
 	</div>
 
 	<div class="row">
-		<?php echo $form->label($model,'stop_date'); ?>
-		<?php echo $form->textField($model,'stop_date',array('size'=>45,'maxlength'=>45)); ?>
-	</div>
-
-	<div class="row">
 		<?php echo $form->label($model,'tbl_prefix'); ?>
 		<?php echo $form->textField($model,'tbl_prefix',array('size'=>45,'maxlength'=>45)); ?>
-	</div>
-
-	<div class="row">
-		<?php echo $form->label($model,'locked'); ?>
-		<?php echo $form->textField($model,'locked'); ?>
 	</div>
 
 	<div class="row">
@@ -59,6 +49,11 @@
 	<div class="row">
 		<?php echo $form->label($model,'check_hash'); ?>
 		<?php echo $form->textField($model,'check_hash',array('size'=>45,'maxlength'=>45)); ?>
+	</div>
+
+	<div class="row">
+		<?php echo $form->label($model,'account'); ?>
+		<?php echo $form->textField($model,'account',array('size'=>10,'maxlength'=>10)); ?>
 	</div>
 
 	<div class="row">

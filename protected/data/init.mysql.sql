@@ -6,5 +6,5 @@ INSERT INTO tbl_tariff VALUES (1, 10, 25, 0.0, 'Free Trial', 'Бесплатно
 INSERT INTO tbl_tariff VALUES (2, 15, 100, 15.0, 'Обычный', '450р в месяц');
 INSERT INTO tbl_tariff VALUES (3, 50, 1000, 30.0, 'расширенный', '900р в месяц');
 
-INSERT INTO tbl_account VALUES (1, 'root', 'nagornov.oi@gmail.com', MD5('qwerty'), CURRENT_TIMESTAMP, NULL, NULL, 0, NULL, 'root', 'qwerty', 0);
-INSERT INTO tbl_account VALUES (2, 'test', 'test@test.com', MD5('qwerty'), CURRENT_TIMESTAMP, NULL, 'ready', 0, NULL, 'user', 'qwerty', 1);
+INSERT INTO tbl_account VALUES (1, 'root', 'nagornov.oi@gmail.com', MD5('qwerty'), CURRENT_TIMESTAMP, NULL, 'root', 'root', 'qwerty', 0.0, 0);
+INSERT INTO tbl_account VALUES (2, 'test', 'test@test.com', MD5('qwerty'), CURRENT_TIMESTAMP, 'a1_test_', 'new', 'user', 'qwerty', 0.0, 1);

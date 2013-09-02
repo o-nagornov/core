@@ -18,3 +18,20 @@ $this->pageTitle=Yii::app()->name;
 the <a href="http://www.yiiframework.com/doc/">documentation</a>.
 Feel free to ask in the <a href="http://www.yiiframework.com/forum/">forum</a>,
 should you have any questions.</p>
+
+<?php
+
+	if (($account = Yii::app()->user->getAccount()) !== false)
+	{
+		if (!$account->tbl_prefix)
+		{
+			echo CHtml::link('Создать решение', array('/install'))."<br/>";
+		}
+		
+	}
+	else
+	{
+		echo CHtml::link('Зарегистрироваться', array('/registration'))."<br/>";
+	}
+
+?>

@@ -3,13 +3,22 @@
 class WebUser extends CWebUser {
     private $_model = null;
  
-    function getRole()
+    public function getRole()
     {
         if ($user = $this->getModel())
         {
             return $user->role;
         }
     }
+	
+	public function getAccount()
+	{
+		if ($user = $this->getModel())
+        {
+            return $user;
+        }
+		return false;
+	}
  
     private function getModel()
     {

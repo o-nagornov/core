@@ -45,6 +45,6 @@ $this->breadcrumbs=array(
 	
 	if ($continue)
 	{
-		echo CHtml::link(CHtml::button('Продолжить установку!'), array('/install/install', 'account'=>'1'));
+		echo CHtml::link(CHtml::button('Продолжить установку!'), array('/install/install', 'account'=>Yii::app()->user->id));
 	}
 ?>

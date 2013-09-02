@@ -26,12 +26,11 @@ $this->menu=array(
 		'email',
 		'password',
 		'creation_date',
-		'stop_date',
 		'tbl_prefix',
-		'locked',
 		'status',
 		'role',
 		'check_hash',
+		'account',
 		'tariff_id',
 	),
 )); ?>

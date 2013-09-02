@@ -50,13 +50,12 @@ or <b>=</b>) at the beginning of each of your search values to specify how the c
 		'email',
 		'password',
 		'creation_date',
-		'stop_date',
-		/*
 		'tbl_prefix',
-		'locked',
+		/*
 		'status',
 		'role',
 		'check_hash',
+		'account',
 		'tariff_id',
 		*/
 		array(
