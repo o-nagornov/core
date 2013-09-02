@@ -26,6 +26,12 @@
 	</div>
 
 	<div class="row">
+		<?php echo $form->labelEx($model,'email'); ?>
+		<?php echo $form->textField($model,'email',array('size'=>45,'maxlength'=>45)); ?>
+		<?php echo $form->error($model,'email'); ?>
+	</div>
+
+	<div class="row">
 		<?php echo $form->labelEx($model,'password'); ?>
 		<?php echo $form->passwordField($model,'password',array('size'=>45,'maxlength'=>45)); ?>
 		<?php echo $form->error($model,'password'); ?>
@@ -53,6 +59,30 @@
 		<?php echo $form->labelEx($model,'locked'); ?>
 		<?php echo $form->textField($model,'locked'); ?>
 		<?php echo $form->error($model,'locked'); ?>
+	</div>
+
+	<div class="row">
+		<?php echo $form->labelEx($model,'status'); ?>
+		<?php echo $form->textField($model,'status',array('size'=>45,'maxlength'=>45)); ?>
+		<?php echo $form->error($model,'status'); ?>
+	</div>
+
+	<div class="row">
+		<?php echo $form->labelEx($model,'role'); ?>
+		<?php echo $form->textField($model,'role',array('size'=>45,'maxlength'=>45)); ?>
+		<?php echo $form->error($model,'role'); ?>
+	</div>
+
+	<div class="row">
+		<?php echo $form->labelEx($model,'check_hash'); ?>
+		<?php echo $form->textField($model,'check_hash',array('size'=>45,'maxlength'=>45)); ?>
+		<?php echo $form->error($model,'check_hash'); ?>
+	</div>
+
+	<div class="row">
+		<?php echo $form->labelEx($model,'tariff_id'); ?>
+		<?php echo $form->textField($model,'tariff_id'); ?>
+		<?php echo $form->error($model,'tariff_id'); ?>
 	</div>
 
 	<div class="row buttons">

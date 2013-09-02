@@ -2,102 +2,140 @@
 
 class InstallController extends Controller
 {
-	public function actionDatabaseCreation($account)
+	public function actionInstall($account)
 	{
 		$account = Account::model()->findByPk($account);
 		
 		if (!$account)
 		{
 			Yii::app()->user->setFlash('error', 'Увы, но сначала Вам нужно зарегистрировать аккаунт');
+			$this->redirect(array('/'));
 		}
 		
-		if ($account->status != 'new')
+		$dbStatus = 'Ожидает';
+		$filesStatus = 'Ожидает';
+		$settingsStatus = 'Ожидает';
+		$usersStatus = 'Ожидает';
+		$continue = true;
+		$link = null;
+				
+		switch($account->status)
 		{
-			$this->redirect(array('/install/filesCreation', 'account'=>$account->id_account));
+		case 'new':
+			$dbStatus = 'Выполняется';
+			$filesStatus = 'Ожидает';
+			$settingsStatus = 'Ожидает';
+			$usersStatus = 'Ожидает';
+			
+			if (!$this->createDB($account))
+			{
+				$dbStatus = 'Произошла ошибка';
+				$continue = false;
+			}
+			break;
+		case 'db':
+			$dbStatus = 'Выполнено';
+			$filesStatus = 'Выполняется';
+			$settingsStatus = 'Ожидает';
+			$usersStatus = 'Ожидает';
+			
+			if (!$this->createFiles($account))
+			{
+				$filesStatus = 'Произошла ошибка';
+				$continue = false;
+			}
+			break;
+		case 'files':
+			$dbStatus = 'Выполнено';
+			$filesStatus = 'Выполнено';
+			$settingsStatus = 'Выполняется';
+			$usersStatus = 'Ожидает';
+			
+			if (!$this->createSettings($account))
+			{
+				$settingsStatus = 'Произошла ошибка';
+				$continue = false;
+			}
+			break;
+		case 'settings':
+			$dbStatus = 'Выполнено';
+			$filesStatus = 'Выполнено';
+			$settingsStatus = 'Выполнено';
+			$usersStatus = 'Выполнено';
+			
+			if (!$this->initialize($account))
+			{
+				$usersStatus = 'Произошла ошибка';
+				$continue = false;
+			}
+			break;
+		case 'ready':
+			$dbStatus = 'Выполнено';
+			$filesStatus = 'Выполнено';
+			$settingsStatus = 'Выполнено';
+			$usersStatus = 'Выполнено';
+			$link = Yii::app()->baseUrl."/".$account->login;
+			$continue = false;
+			break;
 		}
 		
+		$this->render('progress', array(
+			'dbStatus'=>$dbStatus,
+			'filesStatus'=>$filesStatus,
+			'settingsStatus'=>$settingsStatus,
+			'usersStatus'=>$usersStatus,
+			'continue'=>$continue,
+			'link'=>$link,
+		));
+	}
+	
+	private function createDB($account)
+	{
 		$prefix = "a".$account->id_account."_".$account->login."_";
 		
+		$dbStatus = 'Выполняется';
 		$transaction=Yii::app()->db_library->beginTransaction();
 		try
 		{
-		   Yii::app()->db_library->createCommand($this->getSQLQuery($prefix))->execute();
-		   $account->tbl_prefix = $prefix;
-		   $account->status = 'db';
-		   $account->save();
-		   $transaction->commit();
+			//echo "<pre>".$this->getSQLQuery($prefix)."</pre>";
+			Yii::app()->db_library->createCommand($this->getSQLQuery($prefix))->execute();
+			$account->tbl_prefix = $prefix;
+			$account->status = 'db';
+			$account->save();
+			$transaction->commit();
+			return true;
 		}
 		catch(Exception $e)
 		{
-		   $transaction->rollback();
-		   print_r($e);
-		   return;
+			Yii::app()->user->setFlash('error', 'Произошла ошибка. Пожалуйста, свяжитесь с администратором.');
+			$transaction->rollback();
+			return false;
 		}
-		
-		$this->render('databaseCreation');
 	}
 
-	public function actionFilesCreation($account)
+	private function createFiles($account)
 	{
-		$account = Account::model()->findByPk($account);
-		
-		if (!$account)
-		{
-			Yii::app()->user->setFlash('error', 'Увы, но сначала Вам нужно зарегистрировать аккаунт');
-		}
-		
-		if ($account->status != 'db')
-		{
-			$this->redirect(array('/install'));
-		}
-		
 		$src = Yii::getPathOfAlias('application.dist.library');
 		$dst = Yii::getPathOfAlias('webroot.libraries')."/".$account->login;
-		
-		
-		echo $src."<br>";
-		echo $dst."<br>";
-		
+			
 		try
 		{
 			$this->recursiveCopy($src, $dst);
 			symlink($dst, Yii::getPathOfAlias('webroot')."/".$account->login);
 			$account->status = "files";
-			$account->save();
-			
-			echo "ok";
-			
+			$account->save();	
+			return true;
 		}
 		catch (Exception $e)
 		{
-			echo "fail".$e->getMessage();
+			return false;
 		}
-		
-		$this->render('filesCreation');
-		
 	}
 
-	public function actionSettingsCreation($account)
+	private function createSettings($account)
 	{
-		$account = Account::model()->findByPk($account);
-		
-		if (!$account)
-		{
-			Yii::app()->user->setFlash('error', 'Увы, но сначала Вам нужно зарегистрировать аккаунт');
-		}
-		
-		if ($account->status != 'files')
-		{
-			$this->redirect(array('/install'));
-		}
-		
 		$src = Yii::getPathOfAlias('application.dist.library.protected.config')."/main.php";
 		$dst = Yii::getPathOfAlias('webroot.libraries')."/".$account->login."/protected/config/main.php";
-		
-		
-		
-		echo $src."<br>";
-		echo $dst."<br>";
 		
 		try
 		{
@@ -111,27 +149,59 @@ class InstallController extends Controller
 			$account->status = "settings";
 			$account->save();
 			
-			echo "ok";
-			
+			return true;
 		}
 		catch (Exception $e)
 		{
-			echo "fail".$e->getMessage();
+			return false;
 		}
-
-		
-		$this->render('settingsCreation');
+	}
+	
+	private function initialize($account)
+	{
+		$transaction=Yii::app()->db_library->beginTransaction();
+		try
+		{
+		   Yii::app()->db_library->createCommand($this->getCreateUserSQL($account))->execute();
+		   $account->status = 'ready';
+		   $account->save();
+		   $transaction->commit();
+		   
+		   return true;
+		}
+		catch(Exception $e)
+		{
+		   $transaction->rollback();
+		   return false;
+		}
 	}
 	
 	public function actionIndex()
 	{		
 		$this->render('index');
 	}
+	
+	private function getCreateUserSQL($account)
+	{
+		return "
+		INSERT INTO `library`.`".$account->tbl_prefix."tbl_user` VALUES(
+			1,
+			'Administrator',
+			' ',
+			' ',
+			'".$account->email."',
+			'".$account->password."',
+			'sadmin',
+			MD5('".$account->email.$account->password."')
+		);
+		";
+		
+	}
 
 	private function getSQLQuery($tablePrefix)
 	{
 		return "
-		USE `library` ;
+		USE `library`;
 		
 		-- -----------------------------------------------------
 		-- Table `library`.`tbl_book`
@@ -201,14 +271,14 @@ class InstallController extends Controller
 		  `user_id` INT NOT NULL ,
 		  `comment` TEXT NULL ,
 		  PRIMARY KEY (`id_query`) ,
-		  INDEX `fk_Query_Book1` (`book_id` ASC) ,
-		  INDEX `fk_Query_User1` (`user_id` ASC) ,
-		  CONSTRAINT `fk_Query_Book1`
+		  INDEX `fk_".$tablePrefix."Query_Book1` (`book_id` ASC) ,
+		  INDEX `fk_".$tablePrefix."Query_User1` (`user_id` ASC) ,
+		  CONSTRAINT `fk_".$tablePrefix."Query_Book1`
 			FOREIGN KEY (`book_id` )
 			REFERENCES `library`.`tbl_book` (`id_book` )
 			ON DELETE NO ACTION
 			ON UPDATE NO ACTION,
-		  CONSTRAINT `fk_Query_User1`
+		  CONSTRAINT `fk_".$tablePrefix."Query_User1`
 			FOREIGN KEY (`user_id` )
 			REFERENCES `library`.`tbl_user` (`id_user` )
 			ON DELETE NO ACTION
@@ -227,20 +297,20 @@ class InstallController extends Controller
 		  `user_id` INT NOT NULL ,
 		  PRIMARY KEY (`id_recommendation`) ,
 		  UNIQUE INDEX `idRecommenadation_UNIQUE` (`id_recommendation` ASC) ,
-		  INDEX `fk_Recommenadation_Book1` (`book_id` ASC) ,
-		  INDEX `fk_Recommenadation_User1` (`target_user_id` ASC) ,
-		  INDEX `fk_Recommenadation_User2` (`user_id` ASC) ,
-		  CONSTRAINT `fk_Recommenadation_Book1`
+		  INDEX `fk_".$tablePrefix."Recommenadation_Book1` (`book_id` ASC) ,
+		  INDEX `fk_".$tablePrefix."Recommenadation_User1` (`target_user_id` ASC) ,
+		  INDEX `fk_".$tablePrefix."Recommenadation_User2` (`user_id` ASC) ,
+		  CONSTRAINT `fk_".$tablePrefix."Recommenadation_Book1`
 			FOREIGN KEY (`book_id` )
 			REFERENCES `library`.`tbl_book` (`id_book` )
 			ON DELETE NO ACTION
 			ON UPDATE NO ACTION,
-		  CONSTRAINT `fk_Recommenadation_User1`
+		  CONSTRAINT `fk_".$tablePrefix."Recommenadation_User1`
 			FOREIGN KEY (`target_user_id` )
 			REFERENCES `library`.`tbl_user` (`id_user` )
 			ON DELETE NO ACTION
 			ON UPDATE NO ACTION,
-		  CONSTRAINT `fk_Recommenadation_User2`
+		  CONSTRAINT `fk_".$tablePrefix."Recommenadation_User2`
 			FOREIGN KEY (`user_id` )
 			REFERENCES `library`.`tbl_user` (`id_user` )
 			ON DELETE NO ACTION
@@ -266,16 +336,16 @@ class InstallController extends Controller
 		  `book_id` INT NOT NULL ,
 		  `author_id` INT NOT NULL ,
 		  PRIMARY KEY (`book_id`, `author_id`) ,
-		  INDEX `fk_Book_has_Author_Author1` (`author_id` ASC) ,
-		  INDEX `fk_Book_has_Author_Book` (`book_id` ASC) ,
-		  CONSTRAINT `fk_Book_has_Author_Book`
+		  INDEX `fk_".$tablePrefix."Book_has_Author_Author1` (`author_id` ASC) ,
+		  INDEX `fk_".$tablePrefix."Book_has_Author_Book` (`book_id` ASC) ,
+		  CONSTRAINT `fk_".$tablePrefix."Book_has_Author_Book`
 			FOREIGN KEY (`book_id` )
-			REFERENCES `library`.`tbl_book` (`id_book` )
+			REFERENCES `library`.`".$tablePrefix."tbl_book` (`id_book` )
 			ON DELETE NO ACTION
 			ON UPDATE NO ACTION,
-		  CONSTRAINT `fk_Book_has_Author_Author1`
+		  CONSTRAINT `fk_".$tablePrefix."Book_has_Author_Author1`
 			FOREIGN KEY (`author_id` )
-			REFERENCES `library`.`tbl_author` (`id_author` )
+			REFERENCES `library`.`".$tablePrefix."tbl_author` (`id_author` )
 			ON DELETE NO ACTION
 			ON UPDATE NO ACTION)
 		ENGINE = InnoDB;
@@ -288,16 +358,16 @@ class InstallController extends Controller
 		  `book_id` INT NOT NULL ,
 		  `keyword_id` INT NOT NULL ,
 		  PRIMARY KEY (`book_id`, `keyword_id`) ,
-		  INDEX `fk_Book_has_Key_word_Key_word1` (`keyword_id` ASC) ,
-		  INDEX `fk_Book_has_Key_word_Book1` (`book_id` ASC) ,
-		  CONSTRAINT `fk_Book_has_Key_word_Book1`
+		  INDEX `fk_".$tablePrefix."Book_has_Key_word_Key_word1` (`keyword_id` ASC) ,
+		  INDEX `fk_".$tablePrefix."Book_has_Key_word_Book1` (`book_id` ASC) ,
+		  CONSTRAINT `fk_".$tablePrefix."Book_has_Key_word_Book1`
 			FOREIGN KEY (`book_id` )
-			REFERENCES `library`.`tbl_book` (`id_book` )
+			REFERENCES `library`.`".$tablePrefix."tbl_book` (`id_book` )
 			ON DELETE NO ACTION
 			ON UPDATE NO ACTION,
-		  CONSTRAINT `fk_Book_has_Key_word_Key_word1`
+		  CONSTRAINT `fk_".$tablePrefix."Book_has_Key_word_Key_word1`
 			FOREIGN KEY (`keyword_id` )
-			REFERENCES `library`.`tbl_keyword` (`id_keyword` )
+			REFERENCES `library`.`".$tablePrefix."tbl_keyword` (`id_keyword` )
 			ON DELETE NO ACTION
 			ON UPDATE NO ACTION)
 		ENGINE = InnoDB;
@@ -310,16 +380,16 @@ class InstallController extends Controller
 		  `book_id` INT NOT NULL ,
 		  `type_id` INT NOT NULL ,
 		  PRIMARY KEY (`book_id`, `type_id`) ,
-		  INDEX `fk_Book_has_Type_Type1` (`type_id` ASC) ,
-		  INDEX `fk_Book_has_Type_Book1` (`book_id` ASC) ,
-		  CONSTRAINT `fk_Book_has_Type_Book1`
+		  INDEX `fk_".$tablePrefix."Book_has_Type_Type1` (`type_id` ASC) ,
+		  INDEX `fk_".$tablePrefix."Book_has_Type_Book1` (`book_id` ASC) ,
+		  CONSTRAINT `fk_".$tablePrefix."Book_has_Type_Book1`
 			FOREIGN KEY (`book_id` )
-			REFERENCES `library`.`tbl_book` (`id_book` )
+			REFERENCES `library`.`".$tablePrefix."tbl_book` (`id_book` )
 			ON DELETE NO ACTION
 			ON UPDATE NO ACTION,
-		  CONSTRAINT `fk_Book_has_Type_Type1`
+		  CONSTRAINT `fk_".$tablePrefix."Book_has_Type_Type1`
 			FOREIGN KEY (`type_id` )
-			REFERENCES `library`.`tbl_type` (`id_type` )
+			REFERENCES `library`.`".$tablePrefix."tbl_type` (`id_type` )
 			ON DELETE NO ACTION
 			ON UPDATE NO ACTION)
 		ENGINE = InnoDB;

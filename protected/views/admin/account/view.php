@@ -23,10 +23,15 @@ $this->menu=array(
 	'attributes'=>array(
 		'id_account',
 		'login',
+		'email',
 		'password',
 		'creation_date',
 		'stop_date',
 		'tbl_prefix',
 		'locked',
+		'status',
+		'role',
+		'check_hash',
+		'tariff_id',
 	),
 )); ?>

@@ -1,6 +1,6 @@
 <?php
 
-class AccountController extends Controller
+class TariffController extends Controller
 {
 	/**
 	 * @var string the default layout for the views. Defaults to '//layouts/column2', meaning
@@ -62,16 +62,16 @@ class AccountController extends Controller
 	 */
 	public function actionCreate()
 	{
-		$model=new Account;
+		$model=new Tariff;
 
 		// Uncomment the following line if AJAX validation is needed
 		// $this->performAjaxValidation($model);
 
-		if(isset($_POST['Account']))
+		if(isset($_POST['Tariff']))
 		{
-			$model->attributes=$_POST['Account'];
+			$model->attributes=$_POST['Tariff'];
 			if($model->save())
-				$this->redirect(array('view','id'=>$model->id_account));
+				$this->redirect(array('view','id'=>$model->id_tariff));
 		}
 
 		$this->render('create',array(
@@ -91,11 +91,11 @@ class AccountController extends Controller
 		// Uncomment the following line if AJAX validation is needed
 		// $this->performAjaxValidation($model);
 
-		if(isset($_POST['Account']))
+		if(isset($_POST['Tariff']))
 		{
-			$model->attributes=$_POST['Account'];
+			$model->attributes=$_POST['Tariff'];
 			if($model->save())
-				$this->redirect(array('view','id'=>$model->id_account));
+				$this->redirect(array('view','id'=>$model->id_tariff));
 		}
 
 		$this->render('update',array(
@@ -122,7 +122,7 @@ class AccountController extends Controller
 	 */
 	public function actionIndex()
 	{
-		$dataProvider=new CActiveDataProvider('Account');
+		$dataProvider=new CActiveDataProvider('Tariff');
 		$this->render('index',array(
 			'dataProvider'=>$dataProvider,
 		));
@@ -133,10 +133,10 @@ class AccountController extends Controller
 	 */
 	public function actionAdmin()
 	{
-		$model=new Account('search');
+		$model=new Tariff('search');
 		$model->unsetAttributes();  // clear any default values
-		if(isset($_GET['Account']))
-			$model->attributes=$_GET['Account'];
+		if(isset($_GET['Tariff']))
+			$model->attributes=$_GET['Tariff'];
 
 		$this->render('admin',array(
 			'model'=>$model,
@@ -147,12 +147,12 @@ class AccountController extends Controller
 	 * Returns the data model based on the primary key given in the GET variable.
 	 * If the data model is not found, an HTTP exception will be raised.
 	 * @param integer $id the ID of the model to be loaded
-	 * @return Account the loaded model
+	 * @return Tariff the loaded model
 	 * @throws CHttpException
 	 */
 	public function loadModel($id)
 	{
-		$model=Account::model()->findByPk($id);
+		$model=Tariff::model()->findByPk($id);
 		if($model===null)
 			throw new CHttpException(404,'The requested page does not exist.');
 		return $model;
@@ -160,11 +160,11 @@ class AccountController extends Controller
 
 	/**
 	 * Performs the AJAX validation.
-	 * @param Account $model the model to be validated
+	 * @param Tariff $model the model to be validated
 	 */
 	protected function performAjaxValidation($model)
 	{
-		if(isset($_POST['ajax']) && $_POST['ajax']==='account-form')
+		if(isset($_POST['ajax']) && $_POST['ajax']==='tariff-form')
 		{
 			echo CActiveForm::validate($model);
 			Yii::app()->end();

@@ -1,27 +1,25 @@
 <?php
 
 /**
- * This is the model class for table "tbl_tariff".
+ * This is the model class for table "tbl_payment".
  *
- * The followings are the available columns in table 'tbl_tariff':
- * @property integer $id_tariff
- * @property integer $users_limit
- * @property integer $books_limit
- * @property string $day_cost
- * @property string $title
- * @property string $description
+ * The followings are the available columns in table 'tbl_payment':
+ * @property integer $id_payment
+ * @property string $payment_date
+ * @property string $summ
+ * @property string $account_id
  *
  * The followings are the available model relations:
- * @property Account[] $accounts
+ * @property Account $account
  */
-class Tariff extends CActiveRecord
+class Payment extends CActiveRecord
 {
 	/**
 	 * @return string the associated database table name
 	 */
 	public function tableName()
 	{
-		return 'tbl_tariff';
+		return 'tbl_payment';
 	}
 
 	/**
@@ -32,14 +30,12 @@ class Tariff extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('users_limit, books_limit, day_cost, title', 'required'),
-			array('users_limit, books_limit', 'numerical', 'integerOnly'=>true),
-			array('day_cost', 'length', 'max'=>10),
-			array('title', 'length', 'max'=>100),
-			array('description', 'safe'),
+			array('account_id', 'required'),
+			array('summ, account_id', 'length', 'max'=>10),
+			array('payment_date', 'safe'),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('id_tariff, users_limit, books_limit, day_cost, title, description', 'safe', 'on'=>'search'),
+			array('id_payment, payment_date, summ, account_id', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -51,7 +47,7 @@ class Tariff extends CActiveRecord
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
 		return array(
-			'accounts' => array(self::HAS_MANY, 'Account', 'tariff_id'),
+			'account' => array(self::BELONGS_TO, 'Account', 'account_id'),
 		);
 	}
 
@@ -61,12 +57,10 @@ class Tariff extends CActiveRecord
 	public function attributeLabels()
 	{
 		return array(
-			'id_tariff' => 'Id Tariff',
-			'users_limit' => 'Users Limit',
-			'books_limit' => 'Books Limit',
-			'day_cost' => 'Day Cost',
-			'title' => 'Title',
-			'description' => 'Description',
+			'id_payment' => 'Id Payment',
+			'payment_date' => 'Payment Date',
+			'summ' => 'Summ',
+			'account_id' => 'Account',
 		);
 	}
 
@@ -88,12 +82,10 @@ class Tariff extends CActiveRecord
 
 		$criteria=new CDbCriteria;
 
-		$criteria->compare('id_tariff',$this->id_tariff);
-		$criteria->compare('users_limit',$this->users_limit);
-		$criteria->compare('books_limit',$this->books_limit);
-		$criteria->compare('day_cost',$this->day_cost,true);
-		$criteria->compare('title',$this->title,true);
-		$criteria->compare('description',$this->description,true);
+		$criteria->compare('id_payment',$this->id_payment);
+		$criteria->compare('payment_date',$this->payment_date,true);
+		$criteria->compare('summ',$this->summ,true);
+		$criteria->compare('account_id',$this->account_id,true);
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,
@@ -104,7 +96,7 @@ class Tariff extends CActiveRecord
 	 * Returns the static model of the specified AR class.
 	 * Please note that you should have this exact method in all your CActiveRecord descendants!
 	 * @param string $className active record class name.
-	 * @return Tariff the static model class
+	 * @return Payment the static model class
 	 */
 	public static function model($className=__CLASS__)
 	{

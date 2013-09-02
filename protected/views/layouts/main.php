@@ -54,6 +54,24 @@
 	</div><!-- footer -->
 
 </div><!-- page -->
+<?php
 
+if (Yii::app()->user->hasFlash("error"))
+{
+	$this->beginWidget('zii.widgets.jui.CJuiDialog', array(
+		'id' => 'mydialog',
+		'options' => array(
+			'title' => 'Внимание, произошла ошибка',
+			'autoOpen' => true,
+			'modal' => true,
+			'resizable'=> false
+			),
+	));
+	
+	echo Yii::app()->user->getFlash("error", 'Неизвестная ошибка', true);
+	
+	$this->endWidget('zii.widgets.jui.CJuiDialog');
+}
+?>
 </body>
 </html>

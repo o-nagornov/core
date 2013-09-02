@@ -22,6 +22,11 @@
 	</div>
 
 	<div class="row">
+		<?php echo $form->label($model,'email'); ?>
+		<?php echo $form->textField($model,'email',array('size'=>45,'maxlength'=>45)); ?>
+	</div>
+
+	<div class="row">
 		<?php echo $form->label($model,'creation_date'); ?>
 		<?php echo $form->textField($model,'creation_date'); ?>
 	</div>
@@ -39,6 +44,26 @@
 	<div class="row">
 		<?php echo $form->label($model,'locked'); ?>
 		<?php echo $form->textField($model,'locked'); ?>
+	</div>
+
+	<div class="row">
+		<?php echo $form->label($model,'status'); ?>
+		<?php echo $form->textField($model,'status',array('size'=>45,'maxlength'=>45)); ?>
+	</div>
+
+	<div class="row">
+		<?php echo $form->label($model,'role'); ?>
+		<?php echo $form->textField($model,'role',array('size'=>45,'maxlength'=>45)); ?>
+	</div>
+
+	<div class="row">
+		<?php echo $form->label($model,'check_hash'); ?>
+		<?php echo $form->textField($model,'check_hash',array('size'=>45,'maxlength'=>45)); ?>
+	</div>
+
+	<div class="row">
+		<?php echo $form->label($model,'tariff_id'); ?>
+		<?php echo $form->textField($model,'tariff_id'); ?>
 	</div>
 
 	<div class="row buttons">

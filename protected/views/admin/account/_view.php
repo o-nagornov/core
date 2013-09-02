@@ -13,6 +13,10 @@
 	<?php echo CHtml::encode($data->login); ?>
 	<br />
 
+	<b><?php echo CHtml::encode($data->getAttributeLabel('email')); ?>:</b>
+	<?php echo CHtml::encode($data->email); ?>
+	<br />
+
 	<b><?php echo CHtml::encode($data->getAttributeLabel('password')); ?>:</b>
 	<?php echo CHtml::encode($data->password); ?>
 	<br />
@@ -29,9 +33,27 @@
 	<?php echo CHtml::encode($data->tbl_prefix); ?>
 	<br />
 
+	<?php /*
 	<b><?php echo CHtml::encode($data->getAttributeLabel('locked')); ?>:</b>
 	<?php echo CHtml::encode($data->locked); ?>
 	<br />
 
+	<b><?php echo CHtml::encode($data->getAttributeLabel('status')); ?>:</b>
+	<?php echo CHtml::encode($data->status); ?>
+	<br />
+
+	<b><?php echo CHtml::encode($data->getAttributeLabel('role')); ?>:</b>
+	<?php echo CHtml::encode($data->role); ?>
+	<br />
+
+	<b><?php echo CHtml::encode($data->getAttributeLabel('check_hash')); ?>:</b>
+	<?php echo CHtml::encode($data->check_hash); ?>
+	<br />
+
+	<b><?php echo CHtml::encode($data->getAttributeLabel('tariff_id')); ?>:</b>
+	<?php echo CHtml::encode($data->tariff_id); ?>
+	<br />
+
+	*/ ?>
 
 </div>
