@@ -576,3 +576,458 @@ Stack trace:
 REQUEST_URI=/core/index.php/reginstration
 HTTP_REFERER=http://localhost/core/index.php
 ---
+2013/09/03 23:17:33 [error] [exception.CException] exception 'CException' with message 'Property "UserStatisticWidget.user" is not defined.' in /var/www/yii/framework/base/CComponent.php:130
+Stack trace:
+#0 /var/www/core/protected/components/UserStatisticWidget.php(8): CComponent->__get('user')
+#1 /var/www/yii/framework/web/CBaseController.php(173): UserStatisticWidget->run()
+#2 /var/www/core/protected/views/site/index.php(26): CBaseController->widget('application.com...')
+#3 /var/www/yii/framework/web/CBaseController.php(126): require('/var/www/core/p...')
+#4 /var/www/yii/framework/web/CBaseController.php(95): CBaseController->renderInternal('/var/www/core/p...', NULL, true)
+#5 /var/www/yii/framework/web/CController.php(869): CBaseController->renderFile('/var/www/core/p...', NULL, true)
+#6 /var/www/yii/framework/web/CController.php(782): CController->renderPartial('index', NULL, true)
+#7 /var/www/core/protected/controllers/SiteController.php(32): CController->render('index')
+#8 /var/www/yii/framework/web/actions/CInlineAction.php(49): SiteController->actionIndex()
+#9 /var/www/yii/framework/web/CController.php(308): CInlineAction->runWithParams(Array)
+#10 /var/www/yii/framework/web/CController.php(286): CController->runAction(Object(CInlineAction))
+#11 /var/www/yii/framework/web/CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#12 /var/www/yii/framework/web/CWebApplication.php(282): CController->run('')
+#13 /var/www/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('')
+#14 /var/www/yii/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#15 /var/www/core/index.php(12): CApplication->run()
+#16 {main}
+REQUEST_URI=/core/index.php
+HTTP_REFERER=http://localhost/core/index.php/site/login
+---
+2013/09/03 23:17:55 [error] [exception.CException] exception 'CException' with message 'Property "Account.tablePrefix" is not defined.' in /var/www/yii/framework/base/CComponent.php:130
+Stack trace:
+#0 /var/www/yii/framework/db/ar/CActiveRecord.php(145): CComponent->__get('tablePrefix')
+#1 /var/www/core/protected/components/UserStatisticWidget.php(25): CActiveRecord->__get('tablePrefix')
+#2 /var/www/yii/framework/web/CBaseController.php(173): UserStatisticWidget->run()
+#3 /var/www/core/protected/views/site/index.php(26): CBaseController->widget('application.com...')
+#4 /var/www/yii/framework/web/CBaseController.php(126): require('/var/www/core/p...')
+#5 /var/www/yii/framework/web/CBaseController.php(95): CBaseController->renderInternal('/var/www/core/p...', NULL, true)
+#6 /var/www/yii/framework/web/CController.php(869): CBaseController->renderFile('/var/www/core/p...', NULL, true)
+#7 /var/www/yii/framework/web/CController.php(782): CController->renderPartial('index', NULL, true)
+#8 /var/www/core/protected/controllers/SiteController.php(32): CController->render('index')
+#9 /var/www/yii/framework/web/actions/CInlineAction.php(49): SiteController->actionIndex()
+#10 /var/www/yii/framework/web/CController.php(308): CInlineAction->runWithParams(Array)
+#11 /var/www/yii/framework/web/CController.php(286): CController->runAction(Object(CInlineAction))
+#12 /var/www/yii/framework/web/CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#13 /var/www/yii/framework/web/CWebApplication.php(282): CController->run('')
+#14 /var/www/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('')
+#15 /var/www/yii/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#16 /var/www/core/index.php(12): CApplication->run()
+#17 {main}
+REQUEST_URI=/core/index.php
+HTTP_REFERER=http://localhost/core/index.php/site/login
+---
+2013/09/03 23:18:13 [error] [system.db.CDbCommand] CDbCommand::fetchAll() failed: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'library.{{tbl_user}}' doesn't exist. The SQL statement executed was: SHOW FULL COLUMNS FROM `{{tbl_user}}`.
+in /var/www/core/protected/components/UserStatisticWidget.php (27)
+in /var/www/core/protected/views/site/index.php (26)
+in /var/www/core/protected/controllers/SiteController.php (32)
+2013/09/03 23:18:13 [error] [exception.CDbException] exception 'CDbException' with message 'The table "{{tbl_user}}" for active record class "User" cannot be found in the database.' in /var/www/yii/framework/db/ar/CActiveRecord.php:2362
+Stack trace:
+#0 /var/www/yii/framework/db/ar/CActiveRecord.php(411): CActiveRecordMetaData->__construct(Object(User))
+#1 /var/www/yii/framework/db/ar/CActiveRecord.php(658): CActiveRecord->getMetaData()
+#2 /var/www/yii/framework/db/ar/CActiveRecord.php(1601): CActiveRecord->getTableSchema()
+#3 /var/www/core/protected/components/UserStatisticWidget.php(27): CActiveRecord->count()
+#4 /var/www/yii/framework/web/CBaseController.php(173): UserStatisticWidget->run()
+#5 /var/www/core/protected/views/site/index.php(26): CBaseController->widget('application.com...')
+#6 /var/www/yii/framework/web/CBaseController.php(126): require('/var/www/core/p...')
+#7 /var/www/yii/framework/web/CBaseController.php(95): CBaseController->renderInternal('/var/www/core/p...', NULL, true)
+#8 /var/www/yii/framework/web/CController.php(869): CBaseController->renderFile('/var/www/core/p...', NULL, true)
+#9 /var/www/yii/framework/web/CController.php(782): CController->renderPartial('index', NULL, true)
+#10 /var/www/core/protected/controllers/SiteController.php(32): CController->render('index')
+#11 /var/www/yii/framework/web/actions/CInlineAction.php(49): SiteController->actionIndex()
+#12 /var/www/yii/framework/web/CController.php(308): CInlineAction->runWithParams(Array)
+#13 /var/www/yii/framework/web/CController.php(286): CController->runAction(Object(CInlineAction))
+#14 /var/www/yii/framework/web/CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#15 /var/www/yii/framework/web/CWebApplication.php(282): CController->run('')
+#16 /var/www/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('')
+#17 /var/www/yii/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#18 /var/www/core/index.php(12): CApplication->run()
+#19 {main}
+REQUEST_URI=/core/index.php
+HTTP_REFERER=http://localhost/core/index.php/site/login
+---
+2013/09/03 23:18:21 [error] [system.db.CDbCommand] CDbCommand::fetchAll() failed: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'library.{{tbl_user}}' doesn't exist. The SQL statement executed was: SHOW FULL COLUMNS FROM `{{tbl_user}}`.
+in /var/www/core/protected/components/UserStatisticWidget.php (27)
+in /var/www/core/protected/views/site/index.php (26)
+in /var/www/core/protected/controllers/SiteController.php (32)
+2013/09/03 23:18:21 [error] [exception.CDbException] exception 'CDbException' with message 'The table "{{tbl_user}}" for active record class "User" cannot be found in the database.' in /var/www/yii/framework/db/ar/CActiveRecord.php:2362
+Stack trace:
+#0 /var/www/yii/framework/db/ar/CActiveRecord.php(411): CActiveRecordMetaData->__construct(Object(User))
+#1 /var/www/yii/framework/db/ar/CActiveRecord.php(658): CActiveRecord->getMetaData()
+#2 /var/www/yii/framework/db/ar/CActiveRecord.php(1601): CActiveRecord->getTableSchema()
+#3 /var/www/core/protected/components/UserStatisticWidget.php(27): CActiveRecord->count()
+#4 /var/www/yii/framework/web/CBaseController.php(173): UserStatisticWidget->run()
+#5 /var/www/core/protected/views/site/index.php(26): CBaseController->widget('application.com...')
+#6 /var/www/yii/framework/web/CBaseController.php(126): require('/var/www/core/p...')
+#7 /var/www/yii/framework/web/CBaseController.php(95): CBaseController->renderInternal('/var/www/core/p...', NULL, true)
+#8 /var/www/yii/framework/web/CController.php(869): CBaseController->renderFile('/var/www/core/p...', NULL, true)
+#9 /var/www/yii/framework/web/CController.php(782): CController->renderPartial('index', NULL, true)
+#10 /var/www/core/protected/controllers/SiteController.php(32): CController->render('index')
+#11 /var/www/yii/framework/web/actions/CInlineAction.php(49): SiteController->actionIndex()
+#12 /var/www/yii/framework/web/CController.php(308): CInlineAction->runWithParams(Array)
+#13 /var/www/yii/framework/web/CController.php(286): CController->runAction(Object(CInlineAction))
+#14 /var/www/yii/framework/web/CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#15 /var/www/yii/framework/web/CWebApplication.php(282): CController->run('')
+#16 /var/www/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('')
+#17 /var/www/yii/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#18 /var/www/core/index.php(12): CApplication->run()
+#19 {main}
+REQUEST_URI=/core/index.php
+HTTP_REFERER=http://localhost/core/index.php/site/login
+---
+2013/09/03 23:18:24 [error] [system.db.CDbCommand] CDbCommand::fetchAll() failed: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'library.{{tbl_user}}' doesn't exist. The SQL statement executed was: SHOW FULL COLUMNS FROM `{{tbl_user}}`.
+in /var/www/core/protected/components/UserStatisticWidget.php (27)
+in /var/www/core/protected/views/site/index.php (26)
+in /var/www/core/protected/controllers/SiteController.php (32)
+2013/09/03 23:18:24 [error] [exception.CDbException] exception 'CDbException' with message 'The table "{{tbl_user}}" for active record class "User" cannot be found in the database.' in /var/www/yii/framework/db/ar/CActiveRecord.php:2362
+Stack trace:
+#0 /var/www/yii/framework/db/ar/CActiveRecord.php(411): CActiveRecordMetaData->__construct(Object(User))
+#1 /var/www/yii/framework/db/ar/CActiveRecord.php(658): CActiveRecord->getMetaData()
+#2 /var/www/yii/framework/db/ar/CActiveRecord.php(1601): CActiveRecord->getTableSchema()
+#3 /var/www/core/protected/components/UserStatisticWidget.php(27): CActiveRecord->count()
+#4 /var/www/yii/framework/web/CBaseController.php(173): UserStatisticWidget->run()
+#5 /var/www/core/protected/views/site/index.php(26): CBaseController->widget('application.com...')
+#6 /var/www/yii/framework/web/CBaseController.php(126): require('/var/www/core/p...')
+#7 /var/www/yii/framework/web/CBaseController.php(95): CBaseController->renderInternal('/var/www/core/p...', NULL, true)
+#8 /var/www/yii/framework/web/CController.php(869): CBaseController->renderFile('/var/www/core/p...', NULL, true)
+#9 /var/www/yii/framework/web/CController.php(782): CController->renderPartial('index', NULL, true)
+#10 /var/www/core/protected/controllers/SiteController.php(32): CController->render('index')
+#11 /var/www/yii/framework/web/actions/CInlineAction.php(49): SiteController->actionIndex()
+#12 /var/www/yii/framework/web/CController.php(308): CInlineAction->runWithParams(Array)
+#13 /var/www/yii/framework/web/CController.php(286): CController->runAction(Object(CInlineAction))
+#14 /var/www/yii/framework/web/CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#15 /var/www/yii/framework/web/CWebApplication.php(282): CController->run('')
+#16 /var/www/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('')
+#17 /var/www/yii/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#18 /var/www/core/index.php(12): CApplication->run()
+#19 {main}
+REQUEST_URI=/core/
+---
+2013/09/03 23:18:25 [error] [system.db.CDbCommand] CDbCommand::fetchAll() failed: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'library.{{tbl_user}}' doesn't exist. The SQL statement executed was: SHOW FULL COLUMNS FROM `{{tbl_user}}`.
+in /var/www/core/protected/components/UserStatisticWidget.php (27)
+in /var/www/core/protected/views/site/index.php (26)
+in /var/www/core/protected/controllers/SiteController.php (32)
+2013/09/03 23:18:25 [error] [exception.CDbException] exception 'CDbException' with message 'The table "{{tbl_user}}" for active record class "User" cannot be found in the database.' in /var/www/yii/framework/db/ar/CActiveRecord.php:2362
+Stack trace:
+#0 /var/www/yii/framework/db/ar/CActiveRecord.php(411): CActiveRecordMetaData->__construct(Object(User))
+#1 /var/www/yii/framework/db/ar/CActiveRecord.php(658): CActiveRecord->getMetaData()
+#2 /var/www/yii/framework/db/ar/CActiveRecord.php(1601): CActiveRecord->getTableSchema()
+#3 /var/www/core/protected/components/UserStatisticWidget.php(27): CActiveRecord->count()
+#4 /var/www/yii/framework/web/CBaseController.php(173): UserStatisticWidget->run()
+#5 /var/www/core/protected/views/site/index.php(26): CBaseController->widget('application.com...')
+#6 /var/www/yii/framework/web/CBaseController.php(126): require('/var/www/core/p...')
+#7 /var/www/yii/framework/web/CBaseController.php(95): CBaseController->renderInternal('/var/www/core/p...', NULL, true)
+#8 /var/www/yii/framework/web/CController.php(869): CBaseController->renderFile('/var/www/core/p...', NULL, true)
+#9 /var/www/yii/framework/web/CController.php(782): CController->renderPartial('index', NULL, true)
+#10 /var/www/core/protected/controllers/SiteController.php(32): CController->render('index')
+#11 /var/www/yii/framework/web/actions/CInlineAction.php(49): SiteController->actionIndex()
+#12 /var/www/yii/framework/web/CController.php(308): CInlineAction->runWithParams(Array)
+#13 /var/www/yii/framework/web/CController.php(286): CController->runAction(Object(CInlineAction))
+#14 /var/www/yii/framework/web/CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#15 /var/www/yii/framework/web/CWebApplication.php(282): CController->run('')
+#16 /var/www/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('')
+#17 /var/www/yii/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#18 /var/www/core/index.php(12): CApplication->run()
+#19 {main}
+REQUEST_URI=/core/
+---
+2013/09/03 23:19:33 [error] [php] Trying to get property of non-object (/var/www/core/protected/components/UserStatisticWidget.php:35)
+Stack trace:
+#0 /var/www/yii/framework/web/CBaseController.php(126): require()
+#1 /var/www/yii/framework/web/CBaseController.php(95): SiteController->renderInternal()
+#2 /var/www/yii/framework/web/CController.php(869): SiteController->renderFile()
+#3 /var/www/yii/framework/web/CController.php(782): SiteController->renderPartial()
+#4 /var/www/core/protected/controllers/SiteController.php(32): SiteController->render()
+#5 /var/www/yii/framework/web/actions/CInlineAction.php(49): SiteController->actionIndex()
+#6 /var/www/yii/framework/web/CController.php(308): CInlineAction->runWithParams()
+#7 /var/www/yii/framework/web/CController.php(286): SiteController->runAction()
+#8 /var/www/yii/framework/web/CController.php(265): SiteController->runActionWithFilters()
+#9 /var/www/yii/framework/web/CWebApplication.php(282): SiteController->run()
+#10 /var/www/yii/framework/web/CWebApplication.php(141): CWebApplication->runController()
+#11 /var/www/yii/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#12 /var/www/core/index.php(12): CWebApplication->run()
+REQUEST_URI=/core/
+in /var/www/core/protected/components/UserStatisticWidget.php (35)
+in /var/www/core/protected/views/site/index.php (26)
+in /var/www/core/protected/controllers/SiteController.php (32)
+2013/09/03 23:26:06 [error] [exception.CHttpException.400] exception 'CHttpException' with message 'Your request is invalid.' in /var/www/yii/framework/web/CController.php:336
+Stack trace:
+#0 /var/www/yii/framework/web/CController.php(309): CController->invalidActionParams(Object(CInlineAction))
+#1 /var/www/yii/framework/web/CController.php(286): CController->runAction(Object(CInlineAction))
+#2 /var/www/yii/framework/web/CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#3 /var/www/yii/framework/web/CWebApplication.php(282): CController->run('message')
+#4 /var/www/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('registration/me...')
+#5 /var/www/yii/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#6 /var/www/core/index.php(12): CApplication->run()
+#7 {main}
+REQUEST_URI=/core/index.php/registration/message
+---
+2013/09/03 23:26:15 [error] [exception.CHttpException.400] exception 'CHttpException' with message 'Your request is invalid.' in /var/www/yii/framework/web/CController.php:336
+Stack trace:
+#0 /var/www/yii/framework/web/CController.php(309): CController->invalidActionParams(Object(CInlineAction))
+#1 /var/www/yii/framework/web/CController.php(286): CController->runAction(Object(CInlineAction))
+#2 /var/www/yii/framework/web/CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#3 /var/www/yii/framework/web/CWebApplication.php(282): CController->run('message')
+#4 /var/www/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('registration/me...')
+#5 /var/www/yii/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#6 /var/www/core/index.php(12): CApplication->run()
+#7 {main}
+REQUEST_URI=/core/index.php/registration/message/email=qwerty
+---
+2013/09/03 23:43:50 [error] [system.db.CDbCommand] CDbCommand::fetchAll() failed: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'library.a1_test_tbl_user' doesn't exist. The SQL statement executed was: SHOW FULL COLUMNS FROM `a1_test_tbl_user`.
+in /var/www/core/protected/components/UserStatisticWidget.php (34)
+in /var/www/core/protected/views/site/index.php (26)
+in /var/www/core/protected/controllers/SiteController.php (32)
+2013/09/03 23:43:50 [error] [exception.CDbException] exception 'CDbException' with message 'The table "{{tbl_user}}" for active record class "User" cannot be found in the database.' in /var/www/yii/framework/db/ar/CActiveRecord.php:2362
+Stack trace:
+#0 /var/www/yii/framework/db/ar/CActiveRecord.php(411): CActiveRecordMetaData->__construct(Object(User))
+#1 /var/www/yii/framework/db/ar/CActiveRecord.php(658): CActiveRecord->getMetaData()
+#2 /var/www/yii/framework/db/ar/CActiveRecord.php(1601): CActiveRecord->getTableSchema()
+#3 /var/www/core/protected/components/UserStatisticWidget.php(34): CActiveRecord->count()
+#4 /var/www/yii/framework/web/CBaseController.php(173): UserStatisticWidget->run()
+#5 /var/www/core/protected/views/site/index.php(26): CBaseController->widget('application.com...')
+#6 /var/www/yii/framework/web/CBaseController.php(126): require('/var/www/core/p...')
+#7 /var/www/yii/framework/web/CBaseController.php(95): CBaseController->renderInternal('/var/www/core/p...', NULL, true)
+#8 /var/www/yii/framework/web/CController.php(869): CBaseController->renderFile('/var/www/core/p...', NULL, true)
+#9 /var/www/yii/framework/web/CController.php(782): CController->renderPartial('index', NULL, true)
+#10 /var/www/core/protected/controllers/SiteController.php(32): CController->render('index')
+#11 /var/www/yii/framework/web/actions/CInlineAction.php(49): SiteController->actionIndex()
+#12 /var/www/yii/framework/web/CController.php(308): CInlineAction->runWithParams(Array)
+#13 /var/www/yii/framework/web/CController.php(286): CController->runAction(Object(CInlineAction))
+#14 /var/www/yii/framework/web/CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#15 /var/www/yii/framework/web/CWebApplication.php(282): CController->run('')
+#16 /var/www/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('')
+#17 /var/www/yii/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#18 /var/www/core/index.php(12): CApplication->run()
+#19 {main}
+REQUEST_URI=/core/index.php
+HTTP_REFERER=http://localhost/core/index.php/site/login
+---
+2013/09/03 23:44:45 [error] [system.db.CDbCommand] CDbCommand::fetchAll() failed: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'library.a1_test_tbl_user' doesn't exist. The SQL statement executed was: SHOW FULL COLUMNS FROM `a1_test_tbl_user`.
+in /var/www/core/protected/components/UserStatisticWidget.php (34)
+in /var/www/core/protected/views/site/index.php (26)
+in /var/www/core/protected/controllers/SiteController.php (32)
+2013/09/03 23:44:45 [error] [exception.CDbException] exception 'CDbException' with message 'The table "{{tbl_user}}" for active record class "User" cannot be found in the database.' in /var/www/yii/framework/db/ar/CActiveRecord.php:2362
+Stack trace:
+#0 /var/www/yii/framework/db/ar/CActiveRecord.php(411): CActiveRecordMetaData->__construct(Object(User))
+#1 /var/www/yii/framework/db/ar/CActiveRecord.php(658): CActiveRecord->getMetaData()
+#2 /var/www/yii/framework/db/ar/CActiveRecord.php(1601): CActiveRecord->getTableSchema()
+#3 /var/www/core/protected/components/UserStatisticWidget.php(34): CActiveRecord->count()
+#4 /var/www/yii/framework/web/CBaseController.php(173): UserStatisticWidget->run()
+#5 /var/www/core/protected/views/site/index.php(26): CBaseController->widget('application.com...')
+#6 /var/www/yii/framework/web/CBaseController.php(126): require('/var/www/core/p...')
+#7 /var/www/yii/framework/web/CBaseController.php(95): CBaseController->renderInternal('/var/www/core/p...', NULL, true)
+#8 /var/www/yii/framework/web/CController.php(869): CBaseController->renderFile('/var/www/core/p...', NULL, true)
+#9 /var/www/yii/framework/web/CController.php(782): CController->renderPartial('index', NULL, true)
+#10 /var/www/core/protected/controllers/SiteController.php(32): CController->render('index')
+#11 /var/www/yii/framework/web/actions/CInlineAction.php(49): SiteController->actionIndex()
+#12 /var/www/yii/framework/web/CController.php(308): CInlineAction->runWithParams(Array)
+#13 /var/www/yii/framework/web/CController.php(286): CController->runAction(Object(CInlineAction))
+#14 /var/www/yii/framework/web/CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#15 /var/www/yii/framework/web/CWebApplication.php(282): CController->run('')
+#16 /var/www/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('')
+#17 /var/www/yii/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#18 /var/www/core/index.php(12): CApplication->run()
+#19 {main}
+REQUEST_URI=/core/index.php
+HTTP_REFERER=http://localhost/core/index.php/site/login
+---
+2013/09/03 23:44:47 [error] [system.db.CDbCommand] CDbCommand::fetchAll() failed: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'library.a1_test_tbl_user' doesn't exist. The SQL statement executed was: SHOW FULL COLUMNS FROM `a1_test_tbl_user`.
+in /var/www/core/protected/components/UserStatisticWidget.php (34)
+in /var/www/core/protected/views/site/index.php (26)
+in /var/www/core/protected/controllers/SiteController.php (32)
+2013/09/03 23:44:47 [error] [exception.CDbException] exception 'CDbException' with message 'The table "{{tbl_user}}" for active record class "User" cannot be found in the database.' in /var/www/yii/framework/db/ar/CActiveRecord.php:2362
+Stack trace:
+#0 /var/www/yii/framework/db/ar/CActiveRecord.php(411): CActiveRecordMetaData->__construct(Object(User))
+#1 /var/www/yii/framework/db/ar/CActiveRecord.php(658): CActiveRecord->getMetaData()
+#2 /var/www/yii/framework/db/ar/CActiveRecord.php(1601): CActiveRecord->getTableSchema()
+#3 /var/www/core/protected/components/UserStatisticWidget.php(34): CActiveRecord->count()
+#4 /var/www/yii/framework/web/CBaseController.php(173): UserStatisticWidget->run()
+#5 /var/www/core/protected/views/site/index.php(26): CBaseController->widget('application.com...')
+#6 /var/www/yii/framework/web/CBaseController.php(126): require('/var/www/core/p...')
+#7 /var/www/yii/framework/web/CBaseController.php(95): CBaseController->renderInternal('/var/www/core/p...', NULL, true)
+#8 /var/www/yii/framework/web/CController.php(869): CBaseController->renderFile('/var/www/core/p...', NULL, true)
+#9 /var/www/yii/framework/web/CController.php(782): CController->renderPartial('index', NULL, true)
+#10 /var/www/core/protected/controllers/SiteController.php(32): CController->render('index')
+#11 /var/www/yii/framework/web/actions/CInlineAction.php(49): SiteController->actionIndex()
+#12 /var/www/yii/framework/web/CController.php(308): CInlineAction->runWithParams(Array)
+#13 /var/www/yii/framework/web/CController.php(286): CController->runAction(Object(CInlineAction))
+#14 /var/www/yii/framework/web/CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#15 /var/www/yii/framework/web/CWebApplication.php(282): CController->run('')
+#16 /var/www/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('')
+#17 /var/www/yii/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#18 /var/www/core/index.php(12): CApplication->run()
+#19 {main}
+REQUEST_URI=/core/index.php
+HTTP_REFERER=http://localhost/core/index.php/site/login
+---
+2013/09/03 23:52:54 [error] [php] Undefined variable: account (/var/www/core/protected/views/site/account.php:4)
+Stack trace:
+#0 /var/www/yii/framework/web/CController.php(869): SiteController->renderFile()
+#1 /var/www/yii/framework/web/CController.php(782): SiteController->renderPartial()
+#2 /var/www/core/protected/controllers/SiteController.php(112): SiteController->render()
+#3 /var/www/yii/framework/web/actions/CInlineAction.php(49): SiteController->actionAccount()
+#4 /var/www/yii/framework/web/CController.php(308): CInlineAction->runWithParams()
+#5 /var/www/yii/framework/web/CController.php(286): SiteController->runAction()
+#6 /var/www/yii/framework/web/CController.php(265): SiteController->runActionWithFilters()
+#7 /var/www/yii/framework/web/CWebApplication.php(282): SiteController->run()
+#8 /var/www/yii/framework/web/CWebApplication.php(141): CWebApplication->runController()
+#9 /var/www/yii/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#10 /var/www/core/index.php(12): CWebApplication->run()
+REQUEST_URI=/core/index.php/site/account
+in /var/www/core/protected/views/site/account.php (4)
+in /var/www/core/protected/controllers/SiteController.php (112)
+in /var/www/core/index.php (12)
+2013/09/03 23:58:05 [error] [exception.CException] exception 'CException' with message 'Property "UserStatisticWidget.user" is not defined.' in /var/www/yii/framework/base/CComponent.php:130
+Stack trace:
+#0 /var/www/core/protected/components/UserStatisticWidget.php(39): CComponent->__get('user')
+#1 /var/www/yii/framework/web/CBaseController.php(173): UserStatisticWidget->run()
+#2 /var/www/core/protected/views/site/account.php(2): CBaseController->widget('application.com...')
+#3 /var/www/yii/framework/web/CBaseController.php(126): require('/var/www/core/p...')
+#4 /var/www/yii/framework/web/CBaseController.php(95): CBaseController->renderInternal('/var/www/core/p...', NULL, true)
+#5 /var/www/yii/framework/web/CController.php(869): CBaseController->renderFile('/var/www/core/p...', NULL, true)
+#6 /var/www/yii/framework/web/CController.php(782): CController->renderPartial('account', NULL, true)
+#7 /var/www/core/protected/controllers/SiteController.php(112): CController->render('account')
+#8 /var/www/yii/framework/web/actions/CInlineAction.php(49): SiteController->actionAccount()
+#9 /var/www/yii/framework/web/CController.php(308): CInlineAction->runWithParams(Array)
+#10 /var/www/yii/framework/web/CController.php(286): CController->runAction(Object(CInlineAction))
+#11 /var/www/yii/framework/web/CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#12 /var/www/yii/framework/web/CWebApplication.php(282): CController->run('account')
+#13 /var/www/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('site/account')
+#14 /var/www/yii/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#15 /var/www/core/index.php(12): CApplication->run()
+#16 {main}
+REQUEST_URI=/core/index.php/site/account
+HTTP_REFERER=http://localhost/core/index.php/site/index
+---
+2013/09/04 00:01:08 [error] [php] Division by zero (/var/www/core/protected/controllers/AccountController.php:40)
+Stack trace:
+#0 /var/www/yii/framework/web/CController.php(286): AccountController->runAction()
+#1 /var/www/yii/framework/web/CController.php(265): AccountController->runActionWithFilters()
+#2 /var/www/yii/framework/web/CWebApplication.php(282): AccountController->run()
+#3 /var/www/yii/framework/web/CWebApplication.php(141): CWebApplication->runController()
+#4 /var/www/yii/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#5 /var/www/core/index.php(12): CWebApplication->run()
+REQUEST_URI=/core/index.php/account
+in /var/www/core/protected/controllers/AccountController.php (40)
+in /var/www/core/index.php (12)
+2013/09/04 00:03:31 [error] [php] Division by zero (/var/www/core/protected/controllers/AccountController.php:40)
+Stack trace:
+#0 /var/www/yii/framework/web/CController.php(286): AccountController->runAction()
+#1 /var/www/yii/framework/web/CController.php(265): AccountController->runActionWithFilters()
+#2 /var/www/yii/framework/web/CWebApplication.php(282): AccountController->run()
+#3 /var/www/yii/framework/web/CWebApplication.php(141): CWebApplication->runController()
+#4 /var/www/yii/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#5 /var/www/core/index.php(12): CWebApplication->run()
+REQUEST_URI=/core/index.php/account
+in /var/www/core/protected/controllers/AccountController.php (40)
+in /var/www/core/index.php (12)
+2013/09/04 00:03:54 [error] [exception.CException] exception 'CException' with message 'AccountController cannot find the requested view "userStatisticWidget".' in /var/www/yii/framework/web/CController.php:878
+Stack trace:
+#0 /var/www/yii/framework/web/CController.php(782): CController->renderPartial('userStatisticWi...', Array, true)
+#1 /var/www/core/protected/controllers/AccountController.php(52): CController->render('userStatisticWi...', Array)
+#2 /var/www/yii/framework/web/actions/CInlineAction.php(49): AccountController->actionIndex()
+#3 /var/www/yii/framework/web/CController.php(308): CInlineAction->runWithParams(Array)
+#4 /var/www/yii/framework/web/CController.php(286): CController->runAction(Object(CInlineAction))
+#5 /var/www/yii/framework/web/CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#6 /var/www/yii/framework/web/CWebApplication.php(282): CController->run('')
+#7 /var/www/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('account')
+#8 /var/www/yii/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#9 /var/www/core/index.php(12): CApplication->run()
+#10 {main}
+REQUEST_URI=/core/index.php/account
+HTTP_REFERER=http://localhost/core/
+---
+2013/09/04 00:14:37 [error] [php] Undefined variable: book (/var/www/core/protected/views/account/index.php:46)
+Stack trace:
+#0 /var/www/yii/framework/web/CController.php(869): AccountController->renderFile()
+#1 /var/www/yii/framework/web/CController.php(782): AccountController->renderPartial()
+#2 /var/www/core/protected/controllers/AccountController.php(52): AccountController->render()
+#3 /var/www/yii/framework/web/actions/CInlineAction.php(49): AccountController->actionIndex()
+#4 /var/www/yii/framework/web/CController.php(308): CInlineAction->runWithParams()
+#5 /var/www/yii/framework/web/CController.php(286): AccountController->runAction()
+#6 /var/www/yii/framework/web/CController.php(265): AccountController->runActionWithFilters()
+#7 /var/www/yii/framework/web/CWebApplication.php(282): AccountController->run()
+#8 /var/www/yii/framework/web/CWebApplication.php(141): CWebApplication->runController()
+#9 /var/www/yii/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#10 /var/www/core/index.php(12): CWebApplication->run()
+REQUEST_URI=/core/index.php/account
+in /var/www/core/protected/views/account/index.php (46)
+in /var/www/core/protected/controllers/AccountController.php (52)
+in /var/www/core/index.php (12)
+2013/09/04 00:16:51 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "lock".' in /var/www/yii/framework/web/CController.php:483
+Stack trace:
+#0 /var/www/yii/framework/web/CController.php(270): CController->missingAction('lock')
+#1 /var/www/yii/framework/web/CWebApplication.php(282): CController->run('lock')
+#2 /var/www/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('account/lock')
+#3 /var/www/yii/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#4 /var/www/core/index.php(12): CApplication->run()
+#5 {main}
+REQUEST_URI=/core/index.php/account/lock
+HTTP_REFERER=http://localhost/core/index.php/account
+---
+2013/09/04 00:21:33 [error] [exception.CException] exception 'CException' with message 'AccountController and its behaviors do not have a method or closure named "rendirect".' in /var/www/yii/framework/base/CComponent.php:266
+Stack trace:
+#0 /var/www/core/protected/controllers/AccountController.php(61): CComponent->__call('rendirect', Array)
+#1 /var/www/core/protected/controllers/AccountController.php(61): AccountController->rendirect(Array)
+#2 /var/www/yii/framework/web/actions/CInlineAction.php(49): AccountController->actionLock()
+#3 /var/www/yii/framework/web/CController.php(308): CInlineAction->runWithParams(Array)
+#4 /var/www/yii/framework/web/CController.php(286): CController->runAction(Object(CInlineAction))
+#5 /var/www/yii/framework/web/CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#6 /var/www/yii/framework/web/CWebApplication.php(282): CController->run('lock')
+#7 /var/www/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('account/lock')
+#8 /var/www/yii/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#9 /var/www/core/index.php(12): CApplication->run()
+#10 {main}
+REQUEST_URI=/core/index.php/account/lock
+HTTP_REFERER=http://localhost/core/index.php/account
+---
+2013/09/04 00:22:24 [error] [exception.CException] exception 'CException' with message 'WebUser and its behaviors do not have a method or closure named "setError".' in /var/www/yii/framework/base/CComponent.php:266
+Stack trace:
+#0 /var/www/core/protected/controllers/AccountController.php(75): CComponent->__call('setError', Array)
+#1 /var/www/core/protected/controllers/AccountController.php(75): WebUser->setError('error', '???????????????...')
+#2 /var/www/yii/framework/web/actions/CInlineAction.php(49): AccountController->actionUnlock()
+#3 /var/www/yii/framework/web/CController.php(308): CInlineAction->runWithParams(Array)
+#4 /var/www/yii/framework/web/CController.php(286): CController->runAction(Object(CInlineAction))
+#5 /var/www/yii/framework/web/CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#6 /var/www/yii/framework/web/CWebApplication.php(282): CController->run('unlock')
+#7 /var/www/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('account/unlock')
+#8 /var/www/yii/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#9 /var/www/core/index.php(12): CApplication->run()
+#10 {main}
+REQUEST_URI=/core/index.php/account/unlock
+HTTP_REFERER=http://localhost/core/index.php/account
+---
+2013/09/04 00:47:18 [error] [php] Missing argument 2 for CHtml::listData(), called in /var/www/core/protected/views/account/index.php on line 67 and defined (/var/www/yii/framework/web/helpers/CHtml.php:2073)
+Stack trace:
+#0 /var/www/yii/framework/web/CBaseController.php(95): AccountController->renderInternal()
+#1 /var/www/yii/framework/web/CController.php(869): AccountController->renderFile()
+#2 /var/www/yii/framework/web/CController.php(782): AccountController->renderPartial()
+#3 /var/www/core/protected/controllers/AccountController.php(56): AccountController->render()
+#4 /var/www/yii/framework/web/actions/CInlineAction.php(49): AccountController->actionIndex()
+#5 /var/www/yii/framework/web/CController.php(308): CInlineAction->runWithParams()
+#6 /var/www/yii/framework/web/CController.php(286): AccountController->runAction()
+#7 /var/www/yii/framework/web/CController.php(265): AccountController->runActionWithFilters()
+#8 /var/www/yii/framework/web/CWebApplication.php(282): AccountController->run()
+#9 /var/www/yii/framework/web/CWebApplication.php(141): CWebApplication->runController()
+#10 /var/www/yii/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#11 /var/www/core/index.php(12): CWebApplication->run()
+REQUEST_URI=/core/index.php/account
+in /var/www/core/protected/views/account/index.php (67)
+in /var/www/core/protected/controllers/AccountController.php (56)
+in /var/www/core/index.php (12)
+2013/09/04 01:00:26 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "changeTariff".' in /var/www/yii/framework/web/CController.php:483
+Stack trace:
+#0 /var/www/yii/framework/web/CController.php(270): CController->missingAction('changeTariff')
+#1 /var/www/yii/framework/web/CWebApplication.php(282): CController->run('changeTariff')
+#2 /var/www/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('account/changeT...')
+#3 /var/www/yii/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#4 /var/www/core/index.php(12): CApplication->run()
+#5 {main}
+REQUEST_URI=/core/index.php/account/changeTariff?newTariff=2
+HTTP_REFERER=http://localhost/core/index.php/account
+---

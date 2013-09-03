@@ -70,7 +70,7 @@ class InstallController extends Controller
 			}
 			break;
 		case 'demo':
-			$dbeStatus = 'Выполнено';
+			$dbStatus = 'Выполнено';
 			$filesStatus = 'Выполнено';
 			$settingsStatus = 'Выполнено';
 			$usersStatus = 'Выполнено';

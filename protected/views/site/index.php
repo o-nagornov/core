@@ -21,17 +21,10 @@ should you have any questions.</p>
 
 <?php
 
-	if (($account = Yii::app()->user->getAccount()) !== false)
-	{
-		if (!$account->tbl_prefix)
-		{
-			echo CHtml::link('Создать решение', array('/install'))."<br/>";
-		}
-		
-	}
-	else
+	if (($account = Yii::app()->user->getAccount()) === false)
 	{
 		echo CHtml::link('Зарегистрироваться', array('/registration'))."<br/>";
 	}
 
+	echo CHtml::link('Мой аккаунт', array('/account'))."<br/>";
 ?>

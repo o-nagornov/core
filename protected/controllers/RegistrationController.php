@@ -53,7 +53,6 @@ class RegistrationController extends Controller
 				if ($model->password != md5($_POST['repeat_password']))
 				{
 					$model->addError('password', 'Пароли не совпадают');
-					
 					throw new Exception();
 				}
 				
@@ -91,7 +90,6 @@ class RegistrationController extends Controller
 					if ($this->sendApprove($model) != 1)
 					{
 						Yii::app()->user->setFlash('error', 'Извините, невозможно отправить подтверждение. Попробуйте загеристироваться позже.');
-						
 						throw new Exception();
 					}
 					$this->redirect(array('/registration/message', 'email' => $model->email));	
@@ -103,20 +101,19 @@ class RegistrationController extends Controller
 			}
 			catch (Exception $e)
 			{
-				
 			}
 		}
 
 		$model->password = '';
 		
-		$this->render('registration',array(
+		$this->render('registration', array(
 			'model'=>$model,
 		));
 	}
 	
 	public function actionIndex()
 	{
-		$this->actionRegister();
+		$this->redirect(array('/registration/register'));
 	}
 
 	public function actionMessage($email)
@@ -134,7 +131,7 @@ class RegistrationController extends Controller
 		$mailer = Yii::createComponent('application.extensions.mailer.EMailer');
 				
 		$mailer->Host = 'smtp.yandex.ru';
-		$mailer->Port = 25;
+		$mailer->Port = 587;
 		$mailer->Accountname = 'oin.73';
 		$mailer->Password = 'farcry';
 		$mailer->SMTPAuth = true;
@@ -152,6 +149,6 @@ class RegistrationController extends Controller
 <a href='".Yii::app()->request->hostInfo.Yii::app()->homeUrl."/registration/approve?hash=$hash&email=$email'>подтвердить регистрацию</a>";
 
 				
-		return $mailer->Send() . $mailer->ErrorInfo;
+		return $mailer->Send();
 	}
 }
