@@ -1205,3 +1205,68 @@ HTTP_REFERER=http://localhost/core/index.php/admin/payments/create
 2013/09/04 22:14:45 [error] [system.db.CDbCommand] CDbCommand::execute() failed: SQLSTATE[23000]: Integrity constraint violation: 1452 Cannot add or update a child row: a foreign key constraint fails (`core`.`tbl_payment`, CONSTRAINT `fk_tbl_payment_tbl_account` FOREIGN KEY (`account_id`) REFERENCES `tbl_account` (`id_account`) ON DELETE NO ACTION ON UPDATE NO ACTION). The SQL statement executed was: INSERT INTO `tbl_payment` (`account_id`, `summ`) VALUES (:yp0, :yp1).
 in /var/www/core/protected/controllers/admin/PaymentsController.php (25)
 in /var/www/core/index.php (12)
+2013/09/05 00:45:48 [error] [system.db.CDbCommand] CDbCommand::fetchAll() failed: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'library.a2_test_tbl_user' doesn't exist. The SQL statement executed was: SHOW FULL COLUMNS FROM `a2_test_tbl_user`.
+in /var/www/core/protected/controllers/AccountController.php (67)
+in /var/www/core/index.php (12)
+2013/09/05 00:45:48 [error] [exception.CDbException] exception 'CDbException' with message 'The table "{{tbl_user}}" for active record class "User" cannot be found in the database.' in /var/www/yii/framework/db/ar/CActiveRecord.php:2362
+Stack trace:
+#0 /var/www/yii/framework/db/ar/CActiveRecord.php(411): CActiveRecordMetaData->__construct(Object(User))
+#1 /var/www/yii/framework/db/ar/CActiveRecord.php(658): CActiveRecord->getMetaData()
+#2 /var/www/yii/framework/db/ar/CActiveRecord.php(1601): CActiveRecord->getTableSchema()
+#3 /var/www/core/protected/controllers/AccountController.php(67): CActiveRecord->count()
+#4 /var/www/yii/framework/web/actions/CInlineAction.php(49): AccountController->actionIndex()
+#5 /var/www/yii/framework/web/CController.php(308): CInlineAction->runWithParams(Array)
+#6 /var/www/yii/framework/web/filters/CFilterChain.php(133): CController->runAction(Object(CInlineAction))
+#7 /var/www/yii/framework/web/filters/CFilter.php(40): CFilterChain->run()
+#8 /var/www/yii/framework/web/CController.php(1145): CFilter->filter(Object(CFilterChain))
+#9 /var/www/yii/framework/web/filters/CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#10 /var/www/yii/framework/web/filters/CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#11 /var/www/yii/framework/web/CController.php(291): CFilterChain->run()
+#12 /var/www/yii/framework/web/CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#13 /var/www/yii/framework/web/CWebApplication.php(282): CController->run('')
+#14 /var/www/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('account')
+#15 /var/www/yii/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#16 /var/www/core/index.php(12): CApplication->run()
+#17 {main}
+REQUEST_URI=/core/index.php/account
+HTTP_REFERER=http://localhost/core/index.php
+---
+2013/09/05 00:46:13 [error] [exception.CHttpException.403] exception 'CHttpException' with message 'You are not authorized to perform this action.' in /var/www/yii/framework/web/auth/CAccessControlFilter.php:182
+Stack trace:
+#0 /var/www/yii/framework/web/auth/CAccessControlFilter.php(145): CAccessControlFilter->accessDenied(Object(WebUser), 'You are not aut...')
+#1 /var/www/yii/framework/web/filters/CFilter.php(38): CAccessControlFilter->preFilter(Object(CFilterChain))
+#2 /var/www/yii/framework/web/CController.php(1145): CFilter->filter(Object(CFilterChain))
+#3 /var/www/yii/framework/web/filters/CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#4 /var/www/yii/framework/web/filters/CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#5 /var/www/yii/framework/web/CController.php(291): CFilterChain->run()
+#6 /var/www/yii/framework/web/CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#7 /var/www/yii/framework/web/CWebApplication.php(282): CController->run('')
+#8 /var/www/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('install')
+#9 /var/www/yii/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#10 /var/www/core/index.php(12): CApplication->run()
+#11 {main}
+REQUEST_URI=/core/index.php/install
+HTTP_REFERER=http://localhost/core/index.php/account
+---
+2013/09/05 01:00:31 [error] [php] mkdir(): File exists (/var/www/core/protected/controllers/InstallController.php:430)
+Stack trace:
+#0 /var/www/core/protected/controllers/InstallController.php(71): InstallController->createFiles()
+#1 unknown(0): InstallController->actionInstall()
+#2 /var/www/yii/framework/web/actions/CAction.php(108): ReflectionMethod->invokeArgs()
+#3 /var/www/yii/framework/web/actions/CInlineAction.php(47): CInlineAction->runWithParamsInternal()
+#4 /var/www/yii/framework/web/CController.php(308): CInlineAction->runWithParams()
+#5 /var/www/yii/framework/web/filters/CFilterChain.php(133): InstallController->runAction()
+#6 /var/www/yii/framework/web/filters/CFilter.php(40): CFilterChain->run()
+#7 /var/www/yii/framework/web/CController.php(1145): CAccessControlFilter->filter()
+#8 /var/www/yii/framework/web/filters/CInlineFilter.php(58): InstallController->filterAccessControl()
+#9 /var/www/yii/framework/web/filters/CFilterChain.php(130): CInlineFilter->filter()
+#10 /var/www/yii/framework/web/CController.php(291): CFilterChain->run()
+#11 /var/www/yii/framework/web/CController.php(265): InstallController->runActionWithFilters()
+#12 /var/www/yii/framework/web/CWebApplication.php(282): InstallController->run()
+#13 /var/www/yii/framework/web/CWebApplication.php(141): CWebApplication->runController()
+#14 /var/www/yii/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#15 /var/www/core/index.php(12): CWebApplication->run()
+REQUEST_URI=/core/index.php/install/install?account=2
+in /var/www/core/protected/controllers/InstallController.php (430)
+in /var/www/core/protected/controllers/InstallController.php (152)
+in /var/www/core/protected/controllers/InstallController.php (71)

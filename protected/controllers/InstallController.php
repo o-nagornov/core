@@ -22,7 +22,7 @@ class InstallController extends Controller
 	{
 		return array(
 			array('allow',  // allow all users to perform 'index' and 'view' actions
-				'actions'=>array('install'),
+				'actions'=>array('install', 'index'),
 				'roles'=>array('user'),
 			),
 			array('deny',  // deny all users
@@ -126,7 +126,7 @@ class InstallController extends Controller
 		$transaction=Yii::app()->db_library->beginTransaction();
 		try
 		{
-			//echo "<pre>".$this->getSQLQuery($prefix)."</pre>";
+			echo "<pre>".$this->getSQLQuery($prefix)."</pre>";
 			Yii::app()->db_library->createCommand($this->getSQLQuery($prefix))->execute();
 			$account->tbl_prefix = $prefix;
 			$account->status = 'db';
@@ -304,12 +304,12 @@ class InstallController extends Controller
 		  INDEX `fk_".$tablePrefix."Query_User1` (`user_id` ASC) ,
 		  CONSTRAINT `fk_".$tablePrefix."Query_Book1`
 			FOREIGN KEY (`book_id` )
-			REFERENCES `library`.`tbl_book` (`id_book` )
+			REFERENCES `library`.`".$tablePrefix."tbl_book` (`id_book` )
 			ON DELETE NO ACTION
 			ON UPDATE NO ACTION,
 		  CONSTRAINT `fk_".$tablePrefix."Query_User1`
 			FOREIGN KEY (`user_id` )
-			REFERENCES `library`.`tbl_user` (`id_user` )
+			REFERENCES `library`.`".$tablePrefix."tbl_user` (`id_user` )
 			ON DELETE NO ACTION
 			ON UPDATE NO ACTION)
 		ENGINE = InnoDB;
@@ -331,17 +331,17 @@ class InstallController extends Controller
 		  INDEX `fk_".$tablePrefix."Recommenadation_User2` (`user_id` ASC) ,
 		  CONSTRAINT `fk_".$tablePrefix."Recommenadation_Book1`
 			FOREIGN KEY (`book_id` )
-			REFERENCES `library`.`tbl_book` (`id_book` )
+			REFERENCES `library`.`".$tablePrefix."tbl_book` (`id_book` )
 			ON DELETE NO ACTION
 			ON UPDATE NO ACTION,
 		  CONSTRAINT `fk_".$tablePrefix."Recommenadation_User1`
 			FOREIGN KEY (`target_user_id` )
-			REFERENCES `library`.`tbl_user` (`id_user` )
+			REFERENCES `library`.`".$tablePrefix."tbl_user` (`id_user` )
 			ON DELETE NO ACTION
 			ON UPDATE NO ACTION,
 		  CONSTRAINT `fk_".$tablePrefix."Recommenadation_User2`
 			FOREIGN KEY (`user_id` )
-			REFERENCES `library`.`tbl_user` (`id_user` )
+			REFERENCES `library`.`".$tablePrefix."tbl_user` (`id_user` )
 			ON DELETE NO ACTION
 			ON UPDATE NO ACTION)
 		ENGINE = InnoDB;
