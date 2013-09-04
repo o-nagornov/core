@@ -1,7 +1,7 @@
 <?php
 
 class RegistrationController extends Controller
-{
+{	
 	public function actionApprove($hash, $email)
 	{
 		$user = Account::model()->find("email=:email", array(':email'=>$email));
