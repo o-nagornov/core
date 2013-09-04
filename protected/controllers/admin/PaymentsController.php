@@ -2,19 +2,80 @@
 
 class PaymentsController extends Controller
 {
+	public function actionView($id)
+	{
+		$model = Payment::model()->findByPk($id);
+		$this->render('view', array('model'=>$model));
+	}
+	
 	public function actionCreate()
 	{
-		$this->render('create');
-	}
+		$model=new Payment;
 
-	public function actionIndex()
-	{
-		$this->render('index');
-	}
+		// Uncomment the following line if AJAX validation is needed
+		// $this->performAjaxValidation($model);
 
-	public function actionStatistic()
-	{
-		$this->render('statistic');
+		if(isset($_POST['Payment']))
+		{
+			$model->attributes=$_POST['Payment'];
+			
+			if ($model->account_id == 0)
+			{
+				Yii::app()->user->setFlash('error', 'Ошибка обработки платежа - выберите корректный аккаунт');
+			}
+			else
+			{
+			
+				unset($_POST['Payment']);
+				try
+				{
+					if($model->save())
+					{
+						$this->redirect(array('view', 'id'=>$model->id_payment));
+					}
+					else
+					{
+						Yii::app()->user->setFlash('error', 'Ошибка обработки платежа');
+					}
+				}
+				catch (Exception $e)
+				{
+					Yii::app()->user->setFlash('error', 'Ошибка обработки платежа');
+					echo $e;
+				}
+			}
+		}
+
+		$this->render('create',array(
+			'model'=>$model,
+		));
+		
+	}
+	
+	public function actionAutocomplete()
+	{	
+		$term = Yii::app()->getRequest()->getParam('term');
+		
+		if (Yii::app()->request->isAjaxRequest && $term)
+		{    
+			$criteria = new CDbCriteria;
+			$criteria->addSearchCondition("email", $term, true, 'OR', 'LIKE');
+			$criteria->addSearchCondition("login", $term, true, 'OR', 'LIKE');
+			
+			$accouns = Account::model()->findAll($criteria);
+
+			$result = array();
+			foreach ($accouns as $account) {
+				$result[] = array(
+					'label' => $account->email." / ".$account->login,
+					'value' => $account->email." / ".$account->login,
+					'id' => $account->id_account,
+				);
+			}
+						
+			echo CJSON::encode($result);
+			Yii::app()->end();
+		}
 	}
 
 	// Uncomment the following methods and override them if needed

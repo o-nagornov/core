@@ -2,19 +2,32 @@
 
 class StatisticsController extends Controller
 {
-	public function actionIndex()
-	{
-		$this->render('index');
-	}
-
 	public function actionPayments()
 	{
-		$this->render('payments');
+		$model = new Payment('search');
+		$model->unsetAttributes();  // clear any default values
+		if(isset($_GET['Account']))
+		{
+			$model->attributes=$_GET['Payment'];
+		}
+
+		$this->render('payments',array(
+			'model'=>$model,
+		));
 	}
 
 	public function actionRegistrations()
 	{
-		$this->render('registrations');
+		$model = new Account('search');
+		$model->unsetAttributes();  // clear any default values
+		if(isset($_GET['Account']))
+		{
+			$model->attributes=$_GET['Account'];
+		}
+
+		$this->render('registrations',array(
+			'model'=>$model,
+		));
 	}
 
 	// Uncomment the following methods and override them if needed

@@ -1031,3 +1031,177 @@ Stack trace:
 REQUEST_URI=/core/index.php/account/changeTariff?newTariff=2
 HTTP_REFERER=http://localhost/core/index.php/account
 ---
+2013/09/04 20:35:17 [error] [php] Undefined variable: model (/var/www/core/protected/views/admin/statistics/registrations.php:18)
+Stack trace:
+#0 /var/www/yii/framework/web/CController.php(869): StatisticsController->renderFile()
+#1 /var/www/yii/framework/web/CController.php(782): StatisticsController->renderPartial()
+#2 /var/www/core/protected/controllers/admin/StatisticsController.php(17): StatisticsController->render()
+#3 /var/www/yii/framework/web/actions/CInlineAction.php(49): StatisticsController->actionRegistrations()
+#4 /var/www/yii/framework/web/CController.php(308): CInlineAction->runWithParams()
+#5 /var/www/yii/framework/web/CController.php(286): StatisticsController->runAction()
+#6 /var/www/yii/framework/web/CController.php(265): StatisticsController->runActionWithFilters()
+#7 /var/www/yii/framework/web/CWebApplication.php(282): StatisticsController->run()
+#8 /var/www/yii/framework/web/CWebApplication.php(141): CWebApplication->runController()
+#9 /var/www/yii/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#10 /var/www/core/index.php(12): CWebApplication->run()
+REQUEST_URI=/core/admin/statistics/registrations
+in /var/www/core/protected/views/admin/statistics/registrations.php (18)
+in /var/www/core/protected/controllers/admin/StatisticsController.php (17)
+in /var/www/core/index.php (12)
+2013/09/04 20:35:35 [error] [php] Trying to get property of non-object (/var/www/yii/framework/base/CComponent.php(612) : eval()'d code:1)
+Stack trace:
+#0 /var/www/yii/framework/zii/widgets/grid/CGridColumn.php(151): CDataColumn->renderDataCellContent()
+#1 /var/www/yii/framework/zii/widgets/grid/CGridView.php(616): CDataColumn->renderDataCell()
+#2 /var/www/yii/framework/zii/widgets/grid/CGridView.php(572): CGridView->renderTableRow()
+#3 /var/www/yii/framework/zii/widgets/grid/CGridView.php(482): CGridView->renderTableBody()
+#4 /var/www/yii/framework/zii/widgets/CBaseListView.php(167): CGridView->renderItems()
+#5 unknown(0): CGridView->renderSection()
+#6 /var/www/yii/framework/zii/widgets/CBaseListView.php(150): preg_replace_callback()
+#7 /var/www/yii/framework/zii/widgets/CBaseListView.php(135): CGridView->renderContent()
+#8 /var/www/yii/framework/web/CBaseController.php(173): CGridView->run()
+#9 /var/www/core/protected/views/admin/statistics/registrations.php(35): StatisticsController->widget()
+#10 /var/www/yii/framework/web/CBaseController.php(126): require()
+#11 /var/www/yii/framework/web/CBaseController.php(95): StatisticsController->renderInternal()
+#12 /var/www/yii/framework/web/CController.php(869): StatisticsController->renderFile()
+#13 /var/www/yii/framework/web/CController.php(782): StatisticsController->renderPartial()
+#14 /var/www/core/protected/controllers/admin/StatisticsController.php(26): StatisticsController->render()
+#15 /var/www/yii/framework/web/actions/CInlineAction.php(49): StatisticsController->actionRegistrations()
+#16 /var/www/yii/framework/web/CController.php(308): CInlineAction->runWithParams()
+#17 /var/www/yii/framework/web/CController.php(286): StatisticsController->runAction()
+#18 /var/www/yii/framework/web/CController.php(265): StatisticsController->runActionWithFilters()
+#19 /var/www/yii/framework/web/CWebApplication.php(282): StatisticsController->run()
+#20 /var/www/yii/framework/web/CWebApplication.php(141): CWebApplication->runController()
+#21 /var/www/yii/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#22 /var/www/core/index.php(12): CWebApplication->run()
+REQUEST_URI=/core/admin/statistics/registrations
+in /var/www/core/protected/views/admin/statistics/registrations.php (35)
+in /var/www/core/protected/controllers/admin/StatisticsController.php (26)
+in /var/www/core/index.php (12)
+2013/09/04 21:17:56 [error] [php] include(CHhtml.php): failed to open stream: No such file or directory (/var/www/yii/framework/YiiBase.php:427)
+Stack trace:
+#0 /var/www/core/protected/views/admin/dashboard/index.php(16): spl_autoload_call()
+#1 /var/www/yii/framework/web/CBaseController.php(126): require()
+#2 /var/www/yii/framework/web/CBaseController.php(95): DashboardController->renderInternal()
+#3 /var/www/yii/framework/web/CController.php(869): DashboardController->renderFile()
+#4 /var/www/yii/framework/web/CController.php(782): DashboardController->renderPartial()
+#5 /var/www/core/protected/controllers/admin/DashboardController.php(7): DashboardController->render()
+#6 /var/www/yii/framework/web/actions/CInlineAction.php(49): DashboardController->actionIndex()
+#7 /var/www/yii/framework/web/CController.php(308): CInlineAction->runWithParams()
+#8 /var/www/yii/framework/web/CController.php(286): DashboardController->runAction()
+#9 /var/www/yii/framework/web/CController.php(265): DashboardController->runActionWithFilters()
+#10 /var/www/yii/framework/web/CWebApplication.php(282): DashboardController->run()
+#11 /var/www/yii/framework/web/CWebApplication.php(141): CWebApplication->runController()
+#12 /var/www/yii/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#13 /var/www/core/index.php(12): CWebApplication->run()
+REQUEST_URI=/core/admin/dashboard
+in /var/www/core/protected/views/admin/dashboard/index.php (16)
+in /var/www/core/protected/controllers/admin/DashboardController.php (7)
+in /var/www/core/index.php (12)
+2013/09/04 21:52:02 [error] [exception.CDbException] exception 'CDbException' with message 'No columns are being updated for table "tbl_account".' in /var/www/yii/framework/db/schema/CDbCommandBuilder.php:392
+Stack trace:
+#0 /var/www/yii/framework/db/ar/CActiveRecord.php(1747): CDbCommandBuilder->createUpdateCommand(Object(CMysqlTableSchema), Array, Object(CDbCriteria))
+#1 /var/www/yii/framework/db/ar/CActiveRecord.php(1124): CActiveRecord->updateByPk('2', Array)
+#2 /var/www/core/protected/models/Payment.php(111): CActiveRecord->update(Array)
+#3 /var/www/yii/framework/db/ar/CActiveRecord.php(1097): Payment->afterSave()
+#4 /var/www/yii/framework/db/ar/CActiveRecord.php(806): CActiveRecord->insert(NULL)
+#5 /var/www/core/protected/controllers/admin/PaymentsController.php(21): CActiveRecord->save()
+#6 /var/www/yii/framework/web/actions/CInlineAction.php(49): PaymentsController->actionCreate()
+#7 /var/www/yii/framework/web/CController.php(308): CInlineAction->runWithParams(Array)
+#8 /var/www/yii/framework/web/CController.php(286): CController->runAction(Object(CInlineAction))
+#9 /var/www/yii/framework/web/CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#10 /var/www/yii/framework/web/CWebApplication.php(282): CController->run('create')
+#11 /var/www/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('admin/payments/...')
+#12 /var/www/yii/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#13 /var/www/core/index.php(12): CApplication->run()
+#14 {main}
+REQUEST_URI=/core/index.php/admin/payments/create
+HTTP_REFERER=http://localhost/core/index.php/admin/payments/create?targetAccount=2&summ=4&account=test%40test.com+%2F+test
+---
+2013/09/04 22:05:59 [error] [exception.CDbException] exception 'CDbException' with message 'No columns are being updated for table "tbl_account".' in /var/www/yii/framework/db/schema/CDbCommandBuilder.php:392
+Stack trace:
+#0 /var/www/yii/framework/db/ar/CActiveRecord.php(1747): CDbCommandBuilder->createUpdateCommand(Object(CMysqlTableSchema), Array, Object(CDbCriteria))
+#1 /var/www/yii/framework/db/ar/CActiveRecord.php(1124): CActiveRecord->updateByPk('2', Array)
+#2 /var/www/core/protected/models/Payment.php(110): CActiveRecord->update(Array)
+#3 /var/www/yii/framework/db/ar/CActiveRecord.php(1097): Payment->afterSave()
+#4 /var/www/yii/framework/db/ar/CActiveRecord.php(806): CActiveRecord->insert(NULL)
+#5 /var/www/core/protected/controllers/admin/PaymentsController.php(23): CActiveRecord->save()
+#6 /var/www/yii/framework/web/actions/CInlineAction.php(49): PaymentsController->actionCreate()
+#7 /var/www/yii/framework/web/CController.php(308): CInlineAction->runWithParams(Array)
+#8 /var/www/yii/framework/web/CController.php(286): CController->runAction(Object(CInlineAction))
+#9 /var/www/yii/framework/web/CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#10 /var/www/yii/framework/web/CWebApplication.php(282): CController->run('create')
+#11 /var/www/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('admin/payments/...')
+#12 /var/www/yii/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#13 /var/www/core/index.php(12): CApplication->run()
+#14 {main}
+REQUEST_URI=/core/index.php/admin/payments/create
+HTTP_REFERER=http://localhost/core/index.php/admin/payments/create
+---
+2013/09/04 22:11:09 [error] [system.db.CDbCommand] CDbCommand::execute() failed: SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '(account = account + 10 WHERE id_account = 2' at line 1. The SQL statement executed was: UPDATE tbl_account SET (account = account + 10 WHERE id_account = 2.
+in /var/www/core/protected/models/Payment.php (114)
+in /var/www/core/protected/controllers/admin/PaymentsController.php (23)
+in /var/www/core/index.php (12)
+2013/09/04 22:11:09 [error] [exception.Exception] exception 'Exception' in /var/www/core/protected/models/Payment.php:121
+Stack trace:
+#0 /var/www/yii/framework/db/ar/CActiveRecord.php(1097): Payment->afterSave()
+#1 /var/www/yii/framework/db/ar/CActiveRecord.php(806): CActiveRecord->insert(NULL)
+#2 /var/www/core/protected/controllers/admin/PaymentsController.php(23): CActiveRecord->save()
+#3 /var/www/yii/framework/web/actions/CInlineAction.php(49): PaymentsController->actionCreate()
+#4 /var/www/yii/framework/web/CController.php(308): CInlineAction->runWithParams(Array)
+#5 /var/www/yii/framework/web/CController.php(286): CController->runAction(Object(CInlineAction))
+#6 /var/www/yii/framework/web/CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#7 /var/www/yii/framework/web/CWebApplication.php(282): CController->run('create')
+#8 /var/www/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('admin/payments/...')
+#9 /var/www/yii/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#10 /var/www/core/index.php(12): CApplication->run()
+#11 {main}
+REQUEST_URI=/core/index.php/admin/payments/create
+HTTP_REFERER=http://localhost/core/index.php/admin/payments/create
+---
+2013/09/04 22:12:06 [error] [system.db.CDbCommand] CDbCommand::execute() failed: SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '(account = account + 10 WHERE id_account = 2' at line 1. The SQL statement executed was: UPDATE tbl_account SET (account = account + 10 WHERE id_account = 2.
+in /var/www/core/protected/models/Payment.php (114)
+in /var/www/core/protected/controllers/admin/PaymentsController.php (23)
+in /var/www/core/index.php (12)
+2013/09/04 22:12:06 [error] [exception.CDbException] exception 'CDbException' with message 'CDbCommand failed to execute the SQL statement: SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '(account = account + 10 WHERE id_account = 2' at line 1. The SQL statement executed was: UPDATE tbl_account SET (account = account + 10 WHERE id_account = 2' in /var/www/yii/framework/db/CDbCommand.php:358
+Stack trace:
+#0 /var/www/core/protected/models/Payment.php(114): CDbCommand->execute()
+#1 /var/www/yii/framework/db/ar/CActiveRecord.php(1097): Payment->afterSave()
+#2 /var/www/yii/framework/db/ar/CActiveRecord.php(806): CActiveRecord->insert(NULL)
+#3 /var/www/core/protected/controllers/admin/PaymentsController.php(23): CActiveRecord->save()
+#4 /var/www/yii/framework/web/actions/CInlineAction.php(49): PaymentsController->actionCreate()
+#5 /var/www/yii/framework/web/CController.php(308): CInlineAction->runWithParams(Array)
+#6 /var/www/yii/framework/web/CController.php(286): CController->runAction(Object(CInlineAction))
+#7 /var/www/yii/framework/web/CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#8 /var/www/yii/framework/web/CWebApplication.php(282): CController->run('create')
+#9 /var/www/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('admin/payments/...')
+#10 /var/www/yii/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#11 /var/www/core/index.php(12): CApplication->run()
+#12 {main}
+REQUEST_URI=/core/index.php/admin/payments/create
+HTTP_REFERER=http://localhost/core/index.php/admin/payments/create
+---
+2013/09/04 22:12:18 [error] [system.db.CDbCommand] CDbCommand::execute() failed: SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '(account = account + 10) WHERE id_account = 2' at line 1. The SQL statement executed was: UPDATE tbl_account SET (account = account + 10) WHERE id_account = 2.
+in /var/www/core/protected/models/Payment.php (114)
+in /var/www/core/protected/controllers/admin/PaymentsController.php (23)
+in /var/www/core/index.php (12)
+2013/09/04 22:12:18 [error] [exception.CDbException] exception 'CDbException' with message 'CDbCommand failed to execute the SQL statement: SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '(account = account + 10) WHERE id_account = 2' at line 1. The SQL statement executed was: UPDATE tbl_account SET (account = account + 10) WHERE id_account = 2' in /var/www/yii/framework/db/CDbCommand.php:358
+Stack trace:
+#0 /var/www/core/protected/models/Payment.php(114): CDbCommand->execute()
+#1 /var/www/yii/framework/db/ar/CActiveRecord.php(1097): Payment->afterSave()
+#2 /var/www/yii/framework/db/ar/CActiveRecord.php(806): CActiveRecord->insert(NULL)
+#3 /var/www/core/protected/controllers/admin/PaymentsController.php(23): CActiveRecord->save()
+#4 /var/www/yii/framework/web/actions/CInlineAction.php(49): PaymentsController->actionCreate()
+#5 /var/www/yii/framework/web/CController.php(308): CInlineAction->runWithParams(Array)
+#6 /var/www/yii/framework/web/CController.php(286): CController->runAction(Object(CInlineAction))
+#7 /var/www/yii/framework/web/CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#8 /var/www/yii/framework/web/CWebApplication.php(282): CController->run('create')
+#9 /var/www/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('admin/payments/...')
+#10 /var/www/yii/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#11 /var/www/core/index.php(12): CApplication->run()
+#12 {main}
+REQUEST_URI=/core/index.php/admin/payments/create
+HTTP_REFERER=http://localhost/core/index.php/admin/payments/create
+---
+2013/09/04 22:14:45 [error] [system.db.CDbCommand] CDbCommand::execute() failed: SQLSTATE[23000]: Integrity constraint violation: 1452 Cannot add or update a child row: a foreign key constraint fails (`core`.`tbl_payment`, CONSTRAINT `fk_tbl_payment_tbl_account` FOREIGN KEY (`account_id`) REFERENCES `tbl_account` (`id_account`) ON DELETE NO ACTION ON UPDATE NO ACTION). The SQL statement executed was: INSERT INTO `tbl_payment` (`account_id`, `summ`) VALUES (:yp0, :yp1).
+in /var/www/core/protected/controllers/admin/PaymentsController.php (25)
+in /var/www/core/index.php (12)

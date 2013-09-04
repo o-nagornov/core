@@ -102,4 +102,23 @@ class Payment extends CActiveRecord
 	{
 		return parent::model($className);
 	}
+	
+	protected function afterSave()
+	{
+		if ($this->isNewRecord)
+		{
+			$transaction=Yii::app()->db->beginTransaction();
+			try
+			{
+				Yii::app()->db->createCommand("UPDATE tbl_account SET account = account + ".$this->summ." WHERE id_account = ".$this->account_id)->execute();
+				$transaction->commit();
+				return true;
+			}
+			catch(Exception $e)
+			{
+				$transaction->rollback();
+				throw new Exception();
+			}
+		}
+	}
 }
