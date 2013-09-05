@@ -25,6 +25,15 @@ class ServiceCommand extends CConsoleCommand
 			try
 			{
 				Yii::app()->db->createCommand("UPDATE tbl_account SET account = account - ".$account->tariff->day_cost." WHERE id_account = ".$account->id_account)->execute();
+				$account->refresh();
+				
+				if ($account->account < 0)
+				{
+					$account->account = 0.0;
+					$account->status = 'locked';
+					$account->save();
+				}
+				
 				$transaction->commit();
 			}
 			catch(Exception $e)
